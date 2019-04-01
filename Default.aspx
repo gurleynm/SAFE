@@ -1,4 +1,5 @@
-﻿<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Demo._Default" %>
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <div class="jumbotron">
         <h1><img src="Images/icon.png" alt="icon" height="60" width="60"/> S.A.F.E. (Searchable Applications For Everyone) Presents</h1>
