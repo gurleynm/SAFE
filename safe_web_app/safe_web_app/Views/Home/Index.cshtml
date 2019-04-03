@@ -3,12 +3,7 @@
 @{
     ViewBag.Title = "Home Page";
     var db = Database.Open("Database1");
-    var selectQueryString = "SELECT * FROM Apps ORDER BY appName";
-    /*
-     * Spotify	Popular music streaming app that offers a free, premium, student and family plan.	spotify.png	https://www.spotify.com/us/
-     * Instagram	Social media platform that specializes in photographic sharing.	insta.jpg	https://www.instagram.com/?hl=en
-     * Reddit	Application commonly used as a news feed in which users can search specific categories and only recieve results pertaining to that searched word or phrase.	reddit.png	https://www.reddit.com/
-     */
+    var selectQueryString = "SELECT * FROM Apps ORDER BY rating DESC";
 }
 
 <div class="jumbotron">
@@ -27,9 +22,11 @@
             <p>
                 @row.appDescription
             </p>
+            <p><strong>Rating: </strong>@row.rating</p>
             <p>
                 <a class="btn btn-primary" href="@row.url" target="_blank">Learn more &raquo;</a>
             </p>
         </div>
     }
 </div>
+
