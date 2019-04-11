@@ -1,7 +1,9 @@
-@using safe_web_app.Models
-@model List<Application>
+@using WebMatrix.Data
+
 @{
-    ViewBag.Title = "Home Page";    
+    ViewBag.Title = "Home Page";
+    var db = Database.Open("Database1");
+    var selectQueryString = "SELECT * FROM Apps ORDER BY rating DESC";
 }
 
 <div class="jumbotron">
@@ -10,17 +12,19 @@
     @*%--<p><a href="http://www.asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>*@
 </div>
 
+
+
 <div class="row" style="margin:4px">
-    @foreach (var app in Model)
+    @foreach (var row in db.Query(selectQueryString))
     {
         <div class="col-md-4">
-            <h2><img src="@app.imageUrl" alt="" height="42" width="42" /> @app.title</h2>
+            <h2><img src="~/Images/@row.fileName" alt="@row.appName  + @row.id" height="42" width="42" /> @row.appName</h2>
             <p>
-                @app.app_desc
+                @row.appDescription
             </p>
-            <p><strong>Rating: </strong>@app.rating</p>
+            <p><strong>Rating: </strong>@row.rating</p>
             <p>
-                <a class="btn btn-primary" href="#" target="_blank">Learn more &raquo;</a>
+                <a class="btn btn-primary" href="@row.url" target="_blank">Learn more &raquo;</a>
             </p>
         </div>
     }
