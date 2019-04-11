@@ -14,7 +14,7 @@ namespace safe_web_app.Controllers
 
         public HomeController()
         {
-            this.db = new CSE201Entities():
+            this.db = new CSE201Entities();
         }
 
         public ActionResult Index()
@@ -36,10 +36,10 @@ namespace safe_web_app.Controllers
         public ActionResult Search(string input)
         {
             //If the input is blank, return a blank result
-            if (string.IsNullOrEmpty(input)) return View(new List<Application>);
+            if (string.IsNullOrEmpty(input)) return View(new List<Application>());
 
             //Otherwise, search the DB and return the result
-            var Model = db.Applications.Where(x => x.title.Contains(input));
+            var Model = db.Applications.Where(x => x.title.Contains(input)).ToList();
             return View(Model);
         }
     }
