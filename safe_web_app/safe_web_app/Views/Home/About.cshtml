@@ -1,7 +1,38 @@
-﻿@{
-    ViewBag.Title = "About";
+@using WebMatrix.Data
+@{
+    ViewBag.Title = "Catalogue";
+    var db = Database.Open("Database1");
+    var selectQueryString = "SELECT * FROM Apps ORDER BY rating DESC";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        padding: 5px;
+    }
+</style>
+
+<body style="background-image:url('../../Images/background.jpg')">
+    <h2>Full App Catalogue</h2>
+
+    <table style="width:100%; border: 1px solid black; border-collapse: collapse;">
+        <tr>
+            <th>Icon</th>
+            <th>App Name</th>
+            <th>App Description</th>
+            <th>URL</th>
+            <th>Rating</th>
+        </tr>
+        @foreach (var row in db.Query(selectQueryString))
+        {
+            <tr>
+                <td><a href="@row.url" target="_blank"><img src="~/Images/@row.fileName" alt="@row.appName  + @row.id" height="42" width="42" /></a></td>
+                <td>@row.appName</td>
+                <td>@row.appDescription</td>
+                <td><a href="@row.url" target="_blank">@row.url</a></td>
+                <td>@row.rating</td>
+            </tr>
+        }
+    </table>
+</body>
