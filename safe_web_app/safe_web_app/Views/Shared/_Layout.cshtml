@@ -28,27 +28,36 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav" style="color:white">
-                    <li><a href="@Url.Action("Index", "Home")" style="color:white">S.A.F.E</a></li>
+                    <li><a href="@Url.Action("Index", "Home")" id="home" style="color:white"><img src="~/Images/icon.jpg" height="20" width="20" /> S.A.F.E</a></li>
                     <li><a href="@Url.Action("About", "Home")" style="color:white">About</a></li>
                     <li><a href="@Url.Action("Contact", "Home")" style="color:white">Contact</a></li>
                 </ul>
+
+
+                <form class="form-inline pull-left" style="margin:10px">
+                    <input class="form-control mr-sm-2" type="search" id="Search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="searchButton" onclick="myFunction(); return false">Search</button>
+                </form>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
 
-    <form class="form-inline pull-right; text-center" style="margin:5px">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-
     <div class="container body-content" style="background-color:white">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Property of EncAPPsulate</p>
+            <p id="demo">&copy; @DateTime.Now.Year - Property of EncAPPsulate</p>
         </footer>
     </div>
+    
+    
+    <script>
+        function myFunction() {
+            var x = document.getElementById("Search").value;
+            document.getElementById("demo").innerHTML = x;
+        }
+    </script>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
