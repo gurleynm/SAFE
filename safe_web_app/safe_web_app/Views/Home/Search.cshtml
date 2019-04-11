@@ -5,12 +5,14 @@
 }
 
 <div class="jumbotron">
-    <h1><img src="~/Images/icon.jpg" alt="icon" height="60" width="60" /> S.A.F.E. (Searchable Applications For Everyone) Presents</h1>
-    <p class="lead">This weeks top three apps are:</p>
-    @*%--<p><a href="http://www.asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>*@
+    <h1><img src="~/Images/icon.jpg" alt="icon" height="60" width="60" /> Search Results</h1>    
 </div>
 
 <div class="row" style="margin:4px">
+    @if(Model.Count == 0)
+    {
+        <p style="color:red;">Whelp...We didn't find any results for that search. Please try again.</p>
+    }
     @foreach (var app in Model)
     {
         <div class="col-md-4">

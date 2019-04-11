@@ -1,4 +1,5 @@
-﻿using System;
+﻿using safe_web_app.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,23 +9,38 @@ namespace safe_web_app.Controllers
 {
     public class HomeController : Controller
     {
+        public CSE201Entities db;
+
+        public HomeController()
+        {
+            this.db = new CSE201Entities();
+        }
+
         public ActionResult Index()
         {
-            return View();
+            var Model = db.Applications.ToList();
+            return View(Model);
         }
 
         public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
+        {            
             return View();
         }
 
         public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
+        {            
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Search(string input)
+        {
+            //If no input, return a blank result
+            if (string.IsNullOrEmpty(input)) return View(new List<Application>);
+
+            //Otherwise, search the database and return the result
+            var Model = db.Applications.Where(x => x.title.Contains(input)).ToList();
+            return View(Model);
         }
     }
 }
