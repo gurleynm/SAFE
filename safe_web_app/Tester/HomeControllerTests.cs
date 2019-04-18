@@ -27,7 +27,7 @@ namespace safe_web_app {
             ViewResult result = homeController.Index() as ViewResult;
             //Assert
 
-            Assert.IsNull(result);
+            Assert.IsNotNull(result);
         }
 
         [TestMethod]
