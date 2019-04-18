@@ -6,6 +6,8 @@
     <edmx:Diagrams>
       <Diagram DiagramId="ea56be7751ba49b7a9db234fe54ae222" Name="Diagram1">
         <EntityTypeShape EntityType="CSE201Model.Application" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSE201Model.AspNetUserClaim" Width="1.5" PointX="8.25" PointY="3.625" />
+        <EntityTypeShape EntityType="CSE201Model.AspNetUserLogin" Width="1.5" PointX="8.25" PointY="1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

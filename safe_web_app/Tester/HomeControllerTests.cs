@@ -31,13 +31,13 @@ namespace safe_web_app {
         }
 
         [TestMethod]
-        public void About()
+        public void Catalogue()
         {
             // Arrange
             HomeController controller = new HomeController();
 
             // Act
-            ViewResult result = controller.About() as ViewResult;
+            ViewResult result = controller.Catalogue() as ViewResult;
 
             // Assert
             Assert.AreEqual("Catalogue", result.ViewBag.Title);

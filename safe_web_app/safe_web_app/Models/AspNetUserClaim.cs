@@ -12,16 +12,11 @@ namespace safe_web_app.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Application
+    public partial class AspNetUserClaim
     {
-        public int id { get; set; }
-        public string title { get; set; }
-        public string price { get; set; }
-        public string app_desc { get; set; }
-        public string genre { get; set; }
-        public Nullable<double> rating { get; set; }
-        public string url { get; set; }
-        public string imageUrl { get; set; }
-        public Nullable<bool> approved { get; set; }
+        public int Id { get; set; }
+        public string UserId { get; set; }
+        public string ClaimType { get; set; }
+        public string ClaimValue { get; set; }
     }
 }

@@ -29,7 +29,8 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav" style="color:white">
                     <li><a href="@Url.Action("Index", "Home")" id="home" style="color:white"><img src="~/Images/icon.jpg" height="20" width="20" /> S.A.F.E</a></li>
-                    <li><a href="@Url.Action("About", "Home")" style="color:white">About</a></li>
+                    <li><a href="@Url.Action("Catalogue", "Home")" style="color:white">Catalogue</a></li>
+                    <li><a href="@Url.Action("SubmitRequest", "Home")" style="color:white">Submit Request</a></li>
                     <li><a href="@Url.Action("Contact", "Home")" style="color:white">Contact</a></li>
                 </ul>
 
@@ -49,7 +50,7 @@
         <footer>
             <p id="demo">&copy; @DateTime.Now.Year - Property of EncAPPsulate</p>
         </footer>
-    </div>        
+    </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

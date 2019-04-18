@@ -26,5 +26,7 @@ namespace safe_web_app.Models
         }
     
         public virtual DbSet<Application> Applications { get; set; }
+        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
     }
 }
