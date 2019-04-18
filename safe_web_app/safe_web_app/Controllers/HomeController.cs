@@ -24,8 +24,9 @@ namespace safe_web_app.Controllers
         }
 
         public ActionResult About()
-        {            
-            return View();
+        {
+            var Model = db.Applications.ToList();
+            return View(Model);
         }
 
         public ActionResult Contact()
