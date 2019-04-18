@@ -21,12 +21,14 @@ namespace safe_web_app {
 
         [TestMethod]
         public void Index() {
+            
             //Arrange 
             HomeController homeController = new HomeController();
+
             //Act
             ViewResult result = homeController.Index() as ViewResult;
+            
             //Assert
-
             Assert.IsNotNull(result);
         }
 
@@ -40,7 +42,7 @@ namespace safe_web_app {
             ViewResult result = controller.Catalogue() as ViewResult;
 
             // Assert
-            Assert.AreEqual("Catalogue", result.ViewBag.Title);
+            Assert.IsNotNull(result);
         }
 
         [TestMethod]
@@ -55,6 +57,7 @@ namespace safe_web_app {
             // Assert
             Assert.IsNotNull(result);
         }
+
         [TestMethod]
         public void Search()
         {

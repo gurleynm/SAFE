@@ -15,7 +15,7 @@ namespace safe_web_app.Controllers
         public HomeController()
         {
             this.db = new CSE201Entities();
-        }
+        }        
 
         public ActionResult Index()
         {

@@ -4,12 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="CSE201Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="CSE201Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Applications">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id" Type="int" Nullable="false" />
           <Property Name="title" Type="varchar" MaxLength="50" />
           <Property Name="price" Type="varchar" MaxLength="50" />
           <Property Name="app_desc" Type="varchar(max)" />
@@ -17,12 +17,13 @@
           <Property Name="rating" Type="float" />
           <Property Name="url" Type="varchar" MaxLength="200" />
           <Property Name="imageUrl" Type="varchar" MaxLength="200" />
-          <Property Name="approved" Type="bit" Nullable="false" />
+          <Property Name="approved" Type="bit" />
         </EntityType>
         <EntityContainer Name="CSE201ModelStoreContainer">
           <EntitySet Name="Applications" EntityType="Self.Applications" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CSE201Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -38,12 +39,12 @@
           <Property Name="rating" Type="Double" />
           <Property Name="url" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="imageUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="approved" Type="Boolean" Nullable="false" />
+          <Property Name="approved" Type="Boolean" />
         </EntityType>
         <EntityContainer Name="CSE201Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Applications" EntityType="Self.Application" />
-          </EntityContainer>
-        </Schema>
+        </EntityContainer>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -52,7 +53,6 @@
           <EntitySetMapping Name="Applications">
             <EntityTypeMapping TypeName="CSE201Model.Application">
               <MappingFragment StoreEntitySet="Applications">
-                <ScalarProperty Name="approved" ColumnName="approved" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="title" ColumnName="title" />
                 <ScalarProperty Name="price" ColumnName="price" />
@@ -61,10 +61,11 @@
                 <ScalarProperty Name="rating" ColumnName="rating" />
                 <ScalarProperty Name="url" ColumnName="url" />
                 <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
+                <ScalarProperty Name="approved" ColumnName="approved" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          </EntityContainerMapping>
+        </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

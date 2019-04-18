@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace safe_web_app.Models
+namespace Tester
 {
     using System;
     using System.Data.Entity;
