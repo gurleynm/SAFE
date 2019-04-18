@@ -1,17 +1,22 @@
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<!--Node to contain definitions of properties. Currently have project name as only property.-->
   <PropertyGroup>
     <AssemblyName>safe_web_app</AssemblyName>
     <OutputPath>Bin\</OutputPath>
   </PropertyGroup>
+	<!--Node to contain item elements. Currently only contains the compiled source file.-->
   <ItemGroup>
     <Compile Include="safe_web_app.sln" />
   </ItemGroup>
+	<!--Node to contain tasks. The tasks in this node do the majority of actual "building".-->
   <Target Name="Build">
     <MakeDir Directories="$(OutputPath)" Condition="!Exists('$(OutputPath)')" />
     <Csc Sources="@(Compile)" OutputAssembly="$(OutputPath)$(AssemblyName).exe" />
   </Target>
+	<!--Node to contain tasks. The tasks in this node perform the cleaning functions.-->
   <Target Name="Clean" >
     <Delete Files="$(OutputPath)$(AssemblyName).exe" />
   </Target>
+	<!--Causes the clean target to be executed before the build target.-->
   <Target Name="Rebuild" DependsOnTargets="Clean;Build" />
 </Project>
