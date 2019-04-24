@@ -16,7 +16,13 @@ namespace safe_web_app.Controllers
         {
             this.db = new CSE201Entities();
         }
-
+        
+        public ActionResult Comments()
+        {
+            var Model = db.Applications.Where(x => x.approved == true).ToList();
+            return View(Model);
+        }
+        
         public ActionResult Index()
         {
             var Model = db.Applications.Where(x => x.approved == true).ToList();
