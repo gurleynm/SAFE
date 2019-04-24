@@ -23,6 +23,5 @@ namespace safe_web_app.Models
         public string url { get; set; }
         public string imageUrl { get; set; }
         public bool approved { get; set; }
-        public string developer { get; set; }
     }
 }

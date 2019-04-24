@@ -23,15 +23,15 @@
             <th>URL</th>
             <th>Rating</th>
         </tr>
-        @foreach (Application app in Model)
+        @foreach (var app in Model)
         {
-            <tr>
-                <td><a href="@app.url" target="_blank"><img src="~/Images/@app.imageUrl" alt="@app.title" height="42" width="42" /></a></td>
-                <td>@app.title</td>
-                <td><a href="@Url.Action("Comments", "Home")" style="color: black; text-decoration: none;">@app.app_desc</a></td>
-                <td><a href="@app.url" target="_blank">@app.url</a></td>
-                <td>@app.rating</td>
-            </tr>
+        <tr>
+            <td><a href="@app.url" target="_blank"><img src="~/Images/@app.imageUrl" alt="@app.title" height="42" width="42" /></a></td>
+            <td>@app.title</td>
+            <td>@app.app_desc</td>
+            <td><a href="@app.url" target="_blank">@app.url</a></td>
+            <td>@app.rating</td>
+        </tr>
         }
-    </table>
+            </table>
 </body>

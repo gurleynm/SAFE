@@ -17,21 +17,10 @@
           <Property Name="rating" Type="float" />
           <Property Name="url" Type="varchar" MaxLength="200" />
           <Property Name="imageUrl" Type="varchar" MaxLength="200" />
-          <Property Name="developer" Type="varchar" MaxLength="200" />
           <Property Name="approved" Type="bit" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Comments">
-          <Key>
-            <PropertyRef Name="commentId" />
-          </Key>
-          <Property Name="commentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="appId" Type="int" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="comment" Type="varchar(max)" />
         </EntityType>
         <EntityContainer Name="CSE201ModelStoreContainer">
           <EntitySet Name="Applications" EntityType="Self.Applications" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -50,21 +39,10 @@
           <Property Name="url" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="imageUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="approved" Type="Boolean" Nullable="false" />
-          <Property Name="developer" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityContainer Name="CSE201Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Applications" EntityType="Self.Application" />
-          <EntitySet Name="Comments" EntityType="CSE201Model.Comment" />
           </EntityContainer>
-        <EntityType Name="Comment">
-          <Key>
-            <PropertyRef Name="commentId" />
-          </Key>
-          <Property Name="commentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="appId" Type="Int32" Nullable="false" />
-          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="comment1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -74,7 +52,6 @@
           <EntitySetMapping Name="Applications">
             <EntityTypeMapping TypeName="CSE201Model.Application">
               <MappingFragment StoreEntitySet="Applications">
-                <ScalarProperty Name="developer" ColumnName="developer" />
                 <ScalarProperty Name="approved" ColumnName="approved" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="title" ColumnName="title" />
@@ -84,16 +61,6 @@
                 <ScalarProperty Name="rating" ColumnName="rating" />
                 <ScalarProperty Name="url" ColumnName="url" />
                 <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Comments">
-            <EntityTypeMapping TypeName="CSE201Model.Comment">
-              <MappingFragment StoreEntitySet="Comments">
-                <ScalarProperty Name="comment1" ColumnName="comment" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="appId" ColumnName="appId" />
-                <ScalarProperty Name="commentId" ColumnName="commentId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
