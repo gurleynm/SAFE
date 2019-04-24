@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using safe_web_app.Models;
@@ -18,7 +17,6 @@ namespace safe_web_app.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        private RoleManager<IdentityRole> _roleManager;
 
         public AccountController()
         {
@@ -51,39 +49,6 @@ namespace safe_web_app.Controllers
             private set
             {
                 _userManager = value;
-            }
-        }
-
-        public RoleManager<IdentityRole> RoleManager
-        {
-            get
-            {
-                if (_roleManager == null)
-                {
-                    _roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
-                }
-                return _roleManager;
-            }
-            set { _roleManager = value; }
-        }
-
-        private void SetRoles()
-        {
-            AddRole("Admin");
-            AddRole("Moderator");
-            AddRole("User");
-        }
-
-        private bool AddRole(string RoleName)
-        {
-            if (RoleManager.RoleExists(RoleName))
-            {
-                return true;
-            }
-            else
-            {
-                dynamic c = RoleManager.Create(new IdentityRole(RoleName));
-                return c.Succeeded == true;
             }
         }
 
@@ -190,10 +155,6 @@ namespace safe_web_app.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-<<<<<<< HEAD
-=======
-                    UserManager.AddToRole(user.Id, "User");
->>>>>>> b9a92be86135aa0e699fb5315c1f7b33884a1bc4
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771

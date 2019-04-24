@@ -32,10 +32,6 @@
                     <li><a href="@Url.Action("Catalogue", "Home")" style="color:white">Catalogue</a></li>
                     <li><a href="@Url.Action("SubmitRequest", "Home")" style="color:white">Submit Request</a></li>
                     <li><a href="@Url.Action("Contact", "Home")" style="color:white">Contact</a></li>
-                    @if (User.IsInRole("Moderator") || User.IsInRole("Admin"))
-                    {
-                        <li><a href="@Url.Action("ManageRequests", "Moderator")" style="color:white">Manage Requests</a></li>
-                    }
                 </ul>
 
 

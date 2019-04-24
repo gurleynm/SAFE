@@ -206,15 +206,12 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\ModeratorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\AdminViewModels.cs" />
     <Compile Include="Models\Application.cs">
       <DependentUpon>SafeDb.tt</DependentUpon>
     </Compile>
@@ -223,7 +220,6 @@
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\ModeratorViewModels.cs" />
     <Compile Include="Models\SafeDb.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -330,12 +326,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Home\SubmitRequest.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\Home\Comments.cshtml" />
-=======
-    <Content Include="Views\Admin\ManageUsers.cshtml" />
-    <Content Include="Views\Moderator\ManageRequests.cshtml" />
->>>>>>> b9a92be86135aa0e699fb5315c1f7b33884a1bc4
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

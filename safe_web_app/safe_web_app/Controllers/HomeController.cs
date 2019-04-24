@@ -15,17 +15,11 @@ namespace safe_web_app.Controllers
         public HomeController()
         {
             this.db = new CSE201Entities();
-        }
-        
-        public ActionResult Comments()
-        {
-            var Model = db.Applications.Where(x => x.approved == true).ToList();
-            return View(Model);
-        }
-        
+        }        
+
         public ActionResult Index()
         {
-            var Model = db.Applications.Where(x => x.approved == true).ToList();
+            var Model = db.Applications.Where(x=>x.approved == true).ToList();
             return View(Model);
         }
 
@@ -56,7 +50,6 @@ namespace safe_web_app.Controllers
 
         public ActionResult SubmitRequest()
         {
-            if (!User.Identity.IsAuthenticated) return RedirectToAction("Login", "Account");
             ViewBag.Submitted = false;
             return View();
         }
@@ -85,7 +78,7 @@ namespace safe_web_app.Controllers
 
             //Create the new Application object, flag it as not approved
             var request = new Application()
-            {
+            {                
                 title = model.Title,
                 genre = model.Genre,
                 app_desc = model.Description,
