@@ -15,7 +15,11 @@ namespace safe_web_app.Controllers
         public HomeController()
         {
             this.db = new CSE201Entities();
+<<<<<<< HEAD
         }        
+=======
+        }
+>>>>>>> parent of 13d5042... Comment ActionResult added
 
         public ActionResult Index()
         {
