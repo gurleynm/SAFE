@@ -1,0 +1,33 @@
+﻿@using safe_web_app.Models
+@model ManageRequestsViewModel
+@{
+    ViewBag.Title = "Manage Requests";
+}
+
+<h4>Manage Requests</h4>
+
+@if (Model.requests.Count == 0)
+{
+    <p style="color:red;">
+        No new requests at this time.
+    </p>
+}
+else
+{
+    <table class="table">
+        <tbody>
+            @foreach (var request in Model.requests)
+            {
+                <tr>
+                    <td>@request.title</td>
+                    <td>@request.genre</td>
+                    <td>@request.price</td>
+                    <td>@request.url</td>
+                    <td>@request.app_desc</td>
+                    <td><a href="@Url.Action("ApproveRequest", "Moderator", new { id = request.id })"> Approve</a></td>
+                    <td><a href="@Url.Action("DenyRequest", "Moderator", new { id = request.id })"> Deny</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
