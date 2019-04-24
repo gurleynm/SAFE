@@ -18,6 +18,15 @@ else
         <tbody>
             @foreach (var request in Model.requests)
             {
+            <tr>
+                <th>Title</th>
+                <th>Genre</th>
+                <th>Price</th>
+                <th>Url</th>
+                <th>Description</th>
+                <th></th>
+                <th></th>
+            </tr>
                 <tr>
                     <td>@request.title</td>
                     <td>@request.genre</td>
