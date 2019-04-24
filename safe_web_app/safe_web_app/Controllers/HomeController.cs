@@ -23,7 +23,21 @@ namespace safe_web_app.Controllers
             return View(Model);
         }
 
-        public ActionResult Catalogue()
+        public ActionResult Comments()
+        {
+            var Model = db.Comments.ToList();
+            return View(Model);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult Comments(RequestViewModel model, string returnUrl)
+        {
+            return View();
+        }
+
+            public ActionResult Catalogue()
         {
             var Model = db.Applications.Where(x => x.approved == true).ToList();
             return View(Model);
