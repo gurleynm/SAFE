@@ -44,9 +44,9 @@
                 <th>Name</th>
                 <th>Comment</th>
             </tr>
-            <tr>
-                <td>@c.name</td>
-                <td>"@c.comment1"</td>
+            <tr style="border: 1px solid black; border-collapse: collapse; padding: 5px;">
+                <td  style="border: 1px solid black; border-collapse: collapse; padding: 5px;">@c.name</td>
+                <td  style="border: 1px solid black; border-collapse: collapse; padding: 5px;">"@c.comment1"</td>
             </tr>
         }
     </table>
@@ -57,7 +57,7 @@
     <h3>Submit Comment:</h3>
     <table style="width:100%;">
         <tr>
-            <td>                
+            <td>
                 <form action="/Home/SubmitComment" method="post">
                     <input type="text" name="appId" value="@Model.application.id" style="display:none" />
 

@@ -28,7 +28,7 @@
         <tr>
             <td><a href="@app.url" target="_blank"><img src="~/Images/@app.imageUrl" alt="@app.title" height="42" width="42" /></a></td>
             <td>@app.title</td>
-            <td><a href="@Url.Action("Comment","Home", new { appId = app.id })">@app.app_desc</a></td>
+            <td><a style="color:black" href="@Url.Action("Comment","Home", new { appId = app.id })">@app.app_desc</a></td>
             <td><a href="@app.url" target="_blank">@app.url</a></td>
             <td>@app.rating</td>
         </tr>
