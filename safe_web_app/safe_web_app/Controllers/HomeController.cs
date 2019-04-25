@@ -55,7 +55,7 @@ namespace safe_web_app.Controllers
             if (string.IsNullOrEmpty(input)) return View(new List<Application>());
 
             //Otherwise, search the DB and return the result
-            var Model = db.Applications.Where(x => x.title.Contains(input)).ToList();
+            var Model = db.Applications.Where(x => x.title.Contains(input) || x.genre.Contains(input)).ToList();
             return View(Model);
         }
 
