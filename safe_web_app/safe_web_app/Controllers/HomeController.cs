@@ -29,6 +29,14 @@ namespace safe_web_app.Controllers
             return View(Model);
         }
 
+        public ActionResult Comment()
+        {
+            CommentViewModel Model = new CommentViewModel();
+            Model.applications = db.Applications.ToList();
+            Model.comments = db.Comment.ToList();
+            return View(Model);
+        }
+
         public ActionResult Contact()
         {
             return View();
@@ -49,6 +57,34 @@ namespace safe_web_app.Controllers
             //Otherwise, search the DB and return the result
             var Model = db.Applications.Where(x => x.title.Contains(input)).ToList();
             return View(Model);
+        }
+
+        // POST: /Home/SubmitRequest
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult Comment(CommentViewModel model, string returnUrl)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+
+            List<Comment> m = model.comments.ToList();
+
+            //Create the new Application object, flag it as not approved
+            var request = new Comment()
+            {
+                appId = 1,
+                comment = m[0].comment
+            };
+
+            //Save the Comment to the DB
+            db.Comment.Add(request);
+            db.SaveChanges();
+            
+            return View();
         }
 
         // POST: /Home/SubmitRequest

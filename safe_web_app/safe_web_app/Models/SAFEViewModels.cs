@@ -28,4 +28,10 @@ namespace safe_web_app.Models
         [MaxLength(200)]
         public string Url { get; set; }        
     }
+
+    public class CommentViewModel
+    {
+        public List<Application> applications { get; set; }
+        public List<Comment> comments { get; set; }
+    }
 }

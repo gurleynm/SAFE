@@ -1,0 +1,79 @@
+﻿@using safe_web_app.Models
+@model CommentViewModel
+@{
+    Layout = null;
+    List<Application> app = Model.applications;
+    List<Comment> com = Model.comments;
+}
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<body>
+
+    <form id="form1" runat="server">
+        <div class="col-md-4">
+            <h2><img src="~/Images/@app[0].imageUrl" alt="" height="42" width="42" /> @app[0].title</h2>
+            <p>
+                @app[0].app_desc
+            </p>
+            <p>
+                <strong>Rating: </strong>@app[0].rating
+                @{
+                    for (int i = 1; i < app[0].rating; i++)
+                    {
+                        <img src="~/Images/fullStar.jpg" alt="fullStar" height="20" width="20" />
+                    }
+                    int num = 0;
+                    if (app[0].rating % 1 > 0)
+                    {
+                        num = 1;
+                        <img src="~/Images/halfStar.jpg" alt="halfStar" height="22" width="20" />
+                    }
+                    else
+                    {
+                        num = 0;
+                    }
+
+                    for (int i = 0; i < 5 - num - app[0].rating; i++)
+                    {
+                        <img src="~/Images/emptyStar.jpg" alt="emptyStar" height="20" width="20" />
+                    }
+                }
+            </p>
+        </div>
+        <table style="width:100%;" id="Comments">
+                @foreach (var c in com)
+                {
+                    if (c.appId == 1) {
+                    <tr>
+                        <td>c.name</td>
+                        <td>c.comment</td>
+                    </tr>
+                    }
+                }
+            </table>
+
+        <table style="width:100%;">
+            <tr>
+                <td>
+                    Comment:<br />
+                    <textarea id="commentBox"></textarea>
+                    <br />
+                    <input type="submit" value="Submit" class="btn btn-default" />
+                </td>
+            </tr>
+        </table>
+    </form>
+    <script>
+
+        function display() {
+            var x = "<tr>" + document.getElementById("commentBox").value + " @DateTime.Now ";
+            document.getElementById("Comments").innerHTML += x;
+            document.getElementById("Comments").innerHTML += "<hr /></tr>";
+        }
+    </script>
+</body>
+</html>
+
