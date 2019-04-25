@@ -1,79 +1,77 @@
 ﻿@using safe_web_app.Models
 @model CommentViewModel
 @{
-    Layout = null;
-    List<Application> app = Model.applications;
-    List<Comment> com = Model.comments;
+    ViewBag.Title = Model.application.title;
 }
 
+<div class="col-md-12">
+    <h2><img src="~/Images/@Model.application.imageUrl" alt="" height="42" width="42" /> @Model.application.title</h2>
+    <p>
+        @Model.application.app_desc
+    </p>
+    <p>
+        <strong>Rating: </strong>@Model.application.rating
+        @{
+            for (int i = 1; i < Model.application.rating; i++)
+            {
+                <img src="~/Images/fullStar.jpg" alt="fullStar" height="20" width="20" />
+            }
+            int num = 0;
+            if (Model.application.rating % 1 > 0)
+            {
+                num = 1;
+                <img src="~/Images/halfStar.jpg" alt="halfStar" height="22" width="20" />
+            }
+            else
+            {
+                num = 0;
+            }
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<body>
-
-    <form id="form1" runat="server">
-        <div class="col-md-4">
-            <h2><img src="~/Images/@app[0].imageUrl" alt="" height="42" width="42" /> @app[0].title</h2>
-            <p>
-                @app[0].app_desc
-            </p>
-            <p>
-                <strong>Rating: </strong>@app[0].rating
-                @{
-                    for (int i = 1; i < app[0].rating; i++)
-                    {
-                        <img src="~/Images/fullStar.jpg" alt="fullStar" height="20" width="20" />
-                    }
-                    int num = 0;
-                    if (app[0].rating % 1 > 0)
-                    {
-                        num = 1;
-                        <img src="~/Images/halfStar.jpg" alt="halfStar" height="22" width="20" />
-                    }
-                    else
-                    {
-                        num = 0;
-                    }
-
-                    for (int i = 0; i < 5 - num - app[0].rating; i++)
-                    {
-                        <img src="~/Images/emptyStar.jpg" alt="emptyStar" height="20" width="20" />
-                    }
-                }
-            </p>
-        </div>
-        <table style="width:100%;" id="Comments">
-                @foreach (var c in com)
-                {
-                    if (c.appId == 1) {
-                    <tr>
-                        <td>c.name</td>
-                        <td>c.comment</td>
-                    </tr>
-                    }
-                }
-            </table>
-
-        <table style="width:100%;">
+            for (int i = 0; i < 5 - num - Model.application.rating; i++)
+            {
+                <img src="~/Images/emptyStar.jpg" alt="emptyStar" height="20" width="20" />
+            }
+        }
+    </p>
+</div>
+<br />
+<div class="col-md-12">
+    <h3>Comments:</h3>
+    <table style="width:100%; border:1px solid black;" id="Comments">
+        @foreach (var c in Model.comments)
+        {
             <tr>
-                <td>
-                    Comment:<br />
-                    <textarea id="commentBox"></textarea>
+                <th>Name</th>
+                <th>Comment</th>
+            </tr>
+            <tr>
+                <td>@c.name</td>
+                <td>"@c.comment1"</td>
+            </tr>
+        }
+    </table>
+</div>
+<br />
+<br />
+<div class="col-md-12">
+    <h3>Submit Comment:</h3>
+    <table style="width:100%;">
+        <tr>
+            <td>                
+                <form action="/Home/SubmitComment" method="post">
+                    <input type="text" name="appId" value="@Model.application.id" style="display:none" />
+
+                    <label for="name">Your Name:</label>
+                    <input type="text" name="name" />
+                    <br />
+
+                    <label for="comment">Your Comment:</label>
+                    <textarea id="commentBox" name="comment"></textarea>
+
                     <br />
                     <input type="submit" value="Submit" class="btn btn-default" />
-                </td>
-            </tr>
-        </table>
-    </form>
-    <script>
-
-        function display() {
-            var x = "<tr>" + document.getElementById("commentBox").value + " @DateTime.Now ";
-            document.getElementById("Comments").innerHTML += x;
-            document.getElementById("Comments").innerHTML += "<hr /></tr>";
-        }
-    </script>
-</body>
-</html>
-
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>

@@ -31,7 +31,7 @@ namespace safe_web_app.Models
 
     public class CommentViewModel
     {
-        public List<Application> applications { get; set; }
+        public Application application { get; set; }
         public List<Comment> comments { get; set; }
     }
 }

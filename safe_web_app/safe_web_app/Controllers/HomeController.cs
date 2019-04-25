@@ -29,11 +29,11 @@ namespace safe_web_app.Controllers
             return View(Model);
         }
 
-        public ActionResult Comment()
+        public ActionResult Comment(int appId)
         {
             CommentViewModel Model = new CommentViewModel();
-            Model.applications = db.Applications.ToList();
-            Model.comments = db.Comments.ToList();
+            Model.application = db.Applications.Find(appId);
+            Model.comments = db.Comments.Where(x => x.appId == appId).ToList();
             return View(Model);
         }
 
@@ -59,6 +59,25 @@ namespace safe_web_app.Controllers
             return View(Model);
         }
 
+
+        [HttpPost]
+        public ActionResult SubmitComment(int appId, string comment, string name)
+        {
+            var application = db.Applications.Find(appId);
+            if (application != null)
+            {
+                var c = new Comment()
+                {
+                    appId = appId,
+                    comment1 = comment,
+                    name = name
+                };
+                db.Comments.Add(c);
+                db.SaveChanges();
+            }
+            return RedirectToAction("Comment", "Home", new { appId = appId });
+        }
+
         // POST: /Home/SubmitRequest
         [HttpPost]
         [AllowAnonymous]
@@ -77,13 +96,13 @@ namespace safe_web_app.Controllers
             var request = new Comment()
             {
                 appId = 1,
-                comment = m[0].comment
+                comment1 = m[0].comment1
             };
 
             //Save the Comment to the DB
             db.Comments.Add(request);
             db.SaveChanges();
-            
+
             return View();
         }
 
