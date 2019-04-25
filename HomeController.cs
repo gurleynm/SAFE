@@ -29,6 +29,14 @@ namespace safe_web_app.Controllers
             return View(Model);
         }
 
+        public ActionResult Comment(int appId)
+        {
+            CommentViewModel Model = new CommentViewModel();
+            Model.application = db.Applications.Find(appId);
+            Model.comments = db.Comments.Where(x => x.appId == appId).ToList();
+            return View(Model);
+        }
+
         public ActionResult Contact()
         {
             return View();
@@ -49,6 +57,53 @@ namespace safe_web_app.Controllers
             //Otherwise, search the DB and return the result
             var Model = db.Applications.Where(x => x.title.Contains(input) || x.genre.Contains(input)).ToList();
             return View(Model);
+        }
+
+
+        [HttpPost]
+        public ActionResult SubmitComment(int appId, string comment, string name)
+        {
+            var application = db.Applications.Find(appId);
+            if (application != null)
+            {
+                var c = new Comment()
+                {
+                    appId = appId,
+                    comment1 = comment,
+                    name = name
+                };
+                db.Comments.Add(c);
+                db.SaveChanges();
+            }
+            return RedirectToAction("Comment", "Home", new { appId = appId });
+        }
+
+        // POST: /Home/SubmitRequest
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult Comment(CommentViewModel model, string returnUrl)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+
+            List<Comment> m = model.comments.ToList();
+
+            //Create the new Application object, flag it as not approved
+            var request = new Comment()
+            {
+                appId = 1,
+                comment1 = m[0].comment1
+            };
+
+            //Save the Comment to the DB
+            db.Comments.Add(request);
+            db.SaveChanges();
+
+            return View();
         }
 
         // POST: /Home/SubmitRequest
