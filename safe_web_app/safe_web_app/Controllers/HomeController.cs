@@ -33,7 +33,7 @@ namespace safe_web_app.Controllers
         {
             CommentViewModel Model = new CommentViewModel();
             Model.applications = db.Applications.ToList();
-            Model.comments = db.Comment.ToList();
+            Model.comments = db.Comments.ToList();
             return View(Model);
         }
 
@@ -77,11 +77,11 @@ namespace safe_web_app.Controllers
             var request = new Comment()
             {
                 appId = 1,
-                comment = m[0].comment
+                comment1 = m[0].comment1
             };
 
             //Save the Comment to the DB
-            db.Comment.Add(request);
+            db.Comments.Add(request);
             db.SaveChanges();
             
             return View();
