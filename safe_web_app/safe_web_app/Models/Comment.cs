@@ -24,7 +24,7 @@ public partial class Comment
 
     public string name { get; set; }
 
-    public string comment1 { get; set; }
+    public string comment { get; set; }
 
 }
 

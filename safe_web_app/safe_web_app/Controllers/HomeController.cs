@@ -77,7 +77,7 @@ namespace safe_web_app.Controllers
             var request = new Comment()
             {
                 appId = 1,
-                comment1 = m[0].comment1
+                comment = m[0].comment
             };
 
             //Save the Comment to the DB
