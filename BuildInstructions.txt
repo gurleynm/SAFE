@@ -1,0 +1,8 @@
+1. Define properties to include in the build.
+2. Ensure the project name is in the assembly name node.
+3. Include items in Item Group Node
+4. Ensure the compiled source file is included.
+5. Include build tasks in the Build Target Node.
+6. Include clean tasks in the Clean Target Node.
+7. Run both tasks again to ensure the clean target is executed before build target.
+ 
