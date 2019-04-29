@@ -61,49 +61,27 @@ namespace safe_web_app.Controllers
 
 
         [HttpPost]
-        public ActionResult SubmitComment(int appId, string comment, string name)
+        public ActionResult SubmitComment(int appId, string comment, string name, double rate)
         {
             var application = db.Applications.Find(appId);
+            application.sumOfRates += rate;
+            application.numOfPeopleWhoRated += 1;
             if (application != null)
             {
-                var c = new Comment()
+                if (comment != "")
                 {
-                    appId = appId,
-                    comment1 = comment,
-                    name = name
-                };
-                db.Comments.Add(c);
+                    var c = new Comment()
+                    {
+                        appId = appId,
+                        comment1 = comment,
+                        name = name,
+                        rating = rate
+                    };
+                    db.Comments.Add(c);
+                }
                 db.SaveChanges();
             }
             return RedirectToAction("Comment", "Home", new { appId = appId });
-        }
-
-        // POST: /Home/SubmitRequest
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public ActionResult Comment(CommentViewModel model, string returnUrl)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-
-
-            List<Comment> m = model.comments.ToList();
-
-            //Create the new Application object, flag it as not approved
-            var request = new Comment()
-            {
-                appId = 1,
-                comment1 = m[0].comment1
-            };
-
-            //Save the Comment to the DB
-            db.Comments.Add(request);
-            db.SaveChanges();
-
-            return View();
         }
 
         // POST: /Home/SubmitRequest

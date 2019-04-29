@@ -19,6 +19,8 @@
           <Property Name="imageUrl" Type="varchar" MaxLength="200" />
           <Property Name="developer" Type="varchar" MaxLength="200" />
           <Property Name="approved" Type="bit" Nullable="false" />
+          <Property Name="sumOfRates" Type="float" />
+          <Property Name="numOfPeopleWhoRated" Type="int" />
         </EntityType>
         <EntityType Name="Comments">
           <Key>
@@ -28,6 +30,7 @@
           <Property Name="appId" Type="int" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="comment" Type="varchar(max)" />
+          <Property Name="rating" Type="float" />
         </EntityType>
         <EntityContainer Name="CSE201ModelStoreContainer">
           <EntitySet Name="Applications" EntityType="Self.Applications" Schema="dbo" store:Type="Tables" />
@@ -51,6 +54,8 @@
           <Property Name="imageUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="approved" Type="Boolean" Nullable="false" />
           <Property Name="developer" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="sumOfRates" Type="Double" />
+          <Property Name="numOfPeopleWhoRated" Type="Int32" />
         </EntityType>
         <EntityContainer Name="CSE201Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Applications" EntityType="Self.Application" />
@@ -64,6 +69,7 @@
           <Property Name="appId" Type="Int32" Nullable="false" />
           <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="comment1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="rating" Type="Double" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -74,6 +80,8 @@
           <EntitySetMapping Name="Applications">
             <EntityTypeMapping TypeName="CSE201Model.Application">
               <MappingFragment StoreEntitySet="Applications">
+                <ScalarProperty Name="numOfPeopleWhoRated" ColumnName="numOfPeopleWhoRated" />
+                <ScalarProperty Name="sumOfRates" ColumnName="sumOfRates" />
                 <ScalarProperty Name="developer" ColumnName="developer" />
                 <ScalarProperty Name="approved" ColumnName="approved" />
                 <ScalarProperty Name="id" ColumnName="id" />
@@ -90,6 +98,7 @@
           <EntitySetMapping Name="Comments">
             <EntityTypeMapping TypeName="CSE201Model.Comment">
               <MappingFragment StoreEntitySet="Comments">
+                <ScalarProperty Name="rating" ColumnName="rating" />
                 <ScalarProperty Name="comment1" ColumnName="comment" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="appId" ColumnName="appId" />

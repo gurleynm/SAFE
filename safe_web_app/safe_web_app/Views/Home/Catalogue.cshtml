@@ -23,25 +23,27 @@
 
     <div class="row" style="margin:4px">
         @{foreach (var app in Model)
-            {
+                        {
+                double result = (double)(app.sumOfRates / app.numOfPeopleWhoRated);
+                double rating = Math.Round(result, 1, MidpointRounding.AwayFromZero);
                 <div class="col-md-4">
                     <h2><img src="~/Images/@app.imageUrl" alt="" height="42" width="42" /> @app.title</h2>
                     <p>
                         <a style="color:black" href="@Url.Action("Comment", "Home", new { appId = app.id })">@app.app_desc</a>
                     </p>
                     <p>
-                        <strong>Rating: </strong>@app.rating
+                        <strong>Rating: </strong>@rating
                         @{
-                            for (int i = 1; i < app.rating; i++)
+                            for (int i = 1; i < rating; i++)
                             {
                                 <img src="~/Images/fullStar.jpg" alt="fullStar" height="20" width="20" />
                             }
-                            if (app.rating % 1 == 0)
+                            if (rating % 1 == 0)
                             {
                                 <img src="~/Images/fullStar.jpg" alt="fullStar" height="20" width="20" />
                             }
                             int num = 0;
-                            if (app.rating % 1 > 0)
+                            if (rating % 1 > 0)
                             {
                                 num = 1;
                                 <img src="~/Images/halfStar.jpg" alt="halfStar" height="22" width="20" />
@@ -51,7 +53,7 @@
                                 num = 0;
                             }
 
-                            for (int i = 0; i < 5 - num - app.rating; i++)
+                            for (int i = 0; i < 5 - num - rating; i++)
                             {
                                 <img src="~/Images/emptyStar.jpg" alt="emptyStar" height="20" width="20" />
                             }
