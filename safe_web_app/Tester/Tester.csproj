@@ -88,6 +88,7 @@
     </Compile>
     <Compile Include="HomeControllerTests.cs" />
     <Compile Include="ManageControllerTests.cs" />
+    <Compile Include="ModeratorControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SafeDb.Context.cs">
       <AutoGen>True</AutoGen>

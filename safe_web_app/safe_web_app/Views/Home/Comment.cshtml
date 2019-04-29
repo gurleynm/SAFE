@@ -16,6 +16,10 @@
             {
                 <img src="~/Images/fullStar.jpg" alt="fullStar" height="20" width="20" />
             }
+            if (Model.application.rating == 4)
+            {
+                <img src="~/Images/fullStar.jpg" alt="fullStar" height="20" width="20" />
+            }
             int num = 0;
             if (Model.application.rating % 1 > 0)
             {
@@ -31,6 +35,8 @@
             {
                 <img src="~/Images/emptyStar.jpg" alt="emptyStar" height="20" width="20" />
             }
+            <br />
+            <a href="Model.application.url;" target="_blank">Get it here</a>
         }
     </p>
 </div>
@@ -38,12 +44,12 @@
 <div class="col-md-12">
     <h3>Comments:</h3>
     <table style="width:100%; border:1px solid black;" id="Comments">
+        <tr>
+            <th>Name</th>
+            <th>Comment</th>
+        </tr>
         @foreach (var c in Model.comments)
         {
-            <tr>
-                <th>Name</th>
-                <th>Comment</th>
-            </tr>
             <tr style="border: 1px solid black; border-collapse: collapse; padding: 5px;">
                 <td  style="border: 1px solid black; border-collapse: collapse; padding: 5px;">@c.name</td>
                 <td  style="border: 1px solid black; border-collapse: collapse; padding: 5px;">"@c.comment1"</td>
