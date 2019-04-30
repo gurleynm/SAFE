@@ -1,4 +1,5 @@
-﻿using safe_web_app.Models;
+﻿using Microsoft.AspNet.Identity;
+using safe_web_app.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,7 +62,7 @@ namespace safe_web_app.Controllers
 
 
         [HttpPost]
-        public ActionResult SubmitComment(int appId, string comment, string name, double rate)
+        public ActionResult SubmitComment(int appId, string comment, double rate)
         {
             var application = db.Applications.Find(appId);
             application.sumOfRates += rate;
@@ -74,7 +75,7 @@ namespace safe_web_app.Controllers
                     {
                         appId = appId,
                         comment1 = comment,
-                        name = name,
+                        name = User.Identity.GetUserName(),
                         rating = rate
                     };
                     db.Comments.Add(c);
@@ -104,7 +105,9 @@ namespace safe_web_app.Controllers
                 app_desc = model.Description,
                 price = model.Price,
                 url = model.Url,
-                approved = false
+                approved = false,
+                sumOfRates = 0,
+                numOfPeopleWhoRated = 0
             };
 
             //Save the Application to the DB
