@@ -23,7 +23,7 @@
 
     <div class="row" style="margin:4px">
         @{foreach (var app in Model)
-                        {
+            {
                 double result = (double)(app.sumOfRates / app.numOfPeopleWhoRated);
                 double rating = Math.Round(result, 1, MidpointRounding.AwayFromZero);
                 <div class="col-md-4">
@@ -32,9 +32,9 @@
                         <a style="color:black" href="@Url.Action("Comment", "Home", new { appId = app.id })">@app.app_desc</a>
                     </p>
                     <p>
-                        <strong>Rating: </strong>@rating
+                        <strong>Rating: </strong>@{var nan = (double.IsNaN(rating))? "No Rating Yet" : ""+@rating;}@nan
                         @{
-                            for (int i = 1; i < rating; i++)
+                                for (int i = 1; i < rating; i++)
                             {
                                 <img src="~/Images/fullStar.jpg" alt="fullStar" height="20" width="20" />
                             }

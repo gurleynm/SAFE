@@ -37,9 +37,11 @@
         <strong>Rating: </strong>@{if (Model.application.numOfPeopleWhoRated == 0)
             {
             <p>No ratings yet.</p> }
-        else
-        {
-            var quo = Model.application.sumOfRates / Model.application.numOfPeopleWhoRated; <p>@quo/5</p> } }
+            else
+            {
+
+                var result = Model.application.sumOfRates / Model.application.numOfPeopleWhoRated;
+                var quo = Math.Round((double)(Model.application.sumOfRates / Model.application.numOfPeopleWhoRated), 1, MidpointRounding.AwayFromZero); <p>@quo/5</p> } }
         @{
             var rating = Model.application.sumOfRates / Model.application.numOfPeopleWhoRated;
             for (int i = 1; i < rating; i++)
@@ -138,7 +140,7 @@
                                     <label for="rating">Rating (0-5 scale):</label>
                                     <input type="range" class="slider" id="rate" name="rate" value="2.5" min="0" max="5" step=".5"
                                            oninput="document.getElementById('scale').innerHTML = this.value + '/5'" />
-                                    <label id="scale"></label>
+                                    <label id="scale">2.5/5</label>
 
                                     <br />
                                     <input type="submit" value="Submit" class="btn btn-default" />
