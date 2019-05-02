@@ -89,7 +89,6 @@
                     <td style="border: 1px solid black; border-collapse: collapse; padding: 5px;">@c.name</td>
                     <td style="border: 1px solid black; border-collapse: collapse; padding: 5px;">@c.comment1</td>
                     <td style="border: 1px solid black; border-collapse: collapse; padding: 5px;">
-
                         @{
                             int num1 = 0;
                             for (int i = 1; i < c.rating; i++)
@@ -116,6 +115,11 @@
                             }
                         }
                     </td>
+                    @if (User.IsInRole("Moderator"))
+                    {
+                        <td><a href="@Url.Action("DeleteComment", "Home", new { commentId = c.commentId, appId = Model.application.id})" style="color:red;">Delete Comment</a></td>
+                    }
+
                 </tr>
             }
 

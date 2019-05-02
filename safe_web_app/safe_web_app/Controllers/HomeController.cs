@@ -117,5 +117,17 @@ namespace safe_web_app.Controllers
             ViewBag.Submitted = true;
             return View();
         }
+        
+        public ActionResult DeleteComment(int commentId, int appId)
+        {
+            var comment = db.Comments.Find(commentId);
+            if(comment!= null)
+            {
+                db.Comments.Remove(comment);
+                db.SaveChanges();
+            }
+            
+            return RedirectToAction("Comment", "Home", new { appId = appId });
+        }
     }
 }
