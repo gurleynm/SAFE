@@ -30,6 +30,7 @@
                 <ul class="nav navbar-nav" style="color:white">
                     <li><a href="@Url.Action("Index", "Home")" id="home" style="color:white"><img src="~/Images/icon.jpg" height="20" width="20" /> S.A.F.E</a></li>
                     <li><a href="@Url.Action("Catalogue", "Home")" style="color:white">Catalogue</a></li>
+                    <li><a href="@Url.Action("Contact", "Home")" style="color:white">Catalogue</a></li>
                     @if (User.IsInRole("Moderator") || User.IsInRole("Admin") || User.IsInRole("User"))
                     {
                         <li><a href="@Url.Action("SubmitRequest", "Home")" style="color:white">Submit Request</a></li>
@@ -37,7 +38,7 @@
                         {
                             <li><a href="@Url.Action("ManageRequests", "Moderator")" style="color:white">Manage Requests</a></li>
                         }
-                        
+
                     }
                 </ul>
 
