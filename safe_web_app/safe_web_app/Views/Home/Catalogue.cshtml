@@ -75,28 +75,26 @@
                         }
                         else
                         {
-                            <span>@rating</span>
-
+                            <span>@rating</span>                        
+                        {
+                            for (int i = 1; i < rating; i++)
                             {
-                                for (int i = 1; i < rating; i++)
-                                {
-                                    <img src="~/Images/fullStar.jpg" alt="fullStar" height="20" width="20" />
-                                }
-                                if (rating % 1 == 0)
-                                {
-                                    <img src="~/Images/fullStar.jpg" alt="fullStar" height="20" width="20" />
-                                }
-                                int num = 0;
-                                if (rating % 1 > 0)
-                                {
-                                    num = 1;
-                                    <img src="~/Images/halfStar.jpg" alt="halfStar" height="22" width="20" />
-                                }
-                                else
-                                {
-                                    num = 0;
-                                }
-
+                                <img src="~/Images/fullStar.jpg" alt="fullStar" height="20" width="20" />
+                            }
+                            if (rating % 1 == 0 && rating != 0)
+                            {
+                                <img src="~/Images/fullStar.jpg" alt="fullStar" height="20" width="20" />
+                            }
+                            int num = 0;
+                            if (rating % 1 > 0)
+                            {
+                                num = 1;
+                                <img src="~/Images/halfStar.jpg" alt="halfStar" height="22" width="20" />
+                            }
+                            else
+                            {
+                                num = 0;
+                            }
                                 for (int i = 0; i < 5 - num - rating; i++)
                                 {
                                     <img src="~/Images/emptyStar.jpg" alt="emptyStar" height="20" width="20" />
