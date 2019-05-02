@@ -26,7 +26,25 @@ namespace safe_web_app.Controllers
 
         public ActionResult Catalogue()
         {
-            var Model = db.Applications.Where(x => x.approved == true).ToList();
+            var Model = new CatalogueViewModel()
+            {
+                applications = db.Applications.Where(x => x.approved == true).ToList(),
+                genres = new List<string>(),
+                developers = new List<string>()
+            };
+
+            foreach (var app in Model.applications)
+            {
+                if (!Model.genres.Contains(app.genre))
+                {
+                    Model.genres.Add(app.genre);
+                }
+                if (!Model.developers.Contains(app.developer))
+                {
+                    Model.developers.Add(app.developer);
+                }
+            }
+
             return View(Model);
         }
 
@@ -41,6 +59,43 @@ namespace safe_web_app.Controllers
         public ActionResult Contact()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult FilterCatalogue(string genre, string developer, int rating)
+        {
+            var Model = new CatalogueViewModel();
+            Model.applications = db.Applications.Where(x => x.approved == true).ToList();
+            Model.genres = new List<string>();
+            Model.developers = new List<string>();
+
+            foreach (var app in Model.applications)
+            {
+                if (!Model.genres.Contains(app.genre))
+                {
+                    Model.genres.Add(app.genre);
+                }
+                if (!Model.developers.Contains(app.developer))
+                {
+                    Model.developers.Add(app.developer);
+                }
+            }
+
+            //Filter the results by the provided filters
+            if (genre != "Any")
+            {
+                Model.applications = Model.applications.Where(x => x.genre == genre).ToList();
+            }
+            if (developer != "Any")
+            {
+                Model.applications = Model.applications.Where(x => x.developer == developer).ToList();
+            }
+            if (rating != 0)
+            {
+                Model.applications = Model.applications.Where(x => x.rating >= rating).ToList();
+            }
+
+            return View("~/Views/Home/Catalogue.cshtml", Model);
         }
 
         public ActionResult SubmitRequest()
@@ -117,16 +172,16 @@ namespace safe_web_app.Controllers
             ViewBag.Submitted = true;
             return View();
         }
-        
+
         public ActionResult DeleteComment(int commentId, int appId)
         {
             var comment = db.Comments.Find(commentId);
-            if(comment!= null)
+            if (comment != null)
             {
                 db.Comments.Remove(comment);
                 db.SaveChanges();
             }
-            
+
             return RedirectToAction("Comment", "Home", new { appId = appId });
         }
     }

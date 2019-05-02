@@ -34,4 +34,11 @@ namespace safe_web_app.Models
         public Application application { get; set; }
         public List<Comment> comments { get; set; }
     }
+
+    public class CatalogueViewModel
+    {
+        public List<Application> applications { get; set; }
+        public List<string> genres { get; set; }
+        public List<string> developers { get; set; }
+    }
 }
