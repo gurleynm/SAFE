@@ -5,4 +5,8 @@
 5. Include build tasks in the Build Target Node.
 6. Include clean tasks in the Clean Target Node.
 7. Run both tasks again to ensure the clean target is executed before build target.
- 
+**TO RUN THE BUILD SCRIPT**
+1. Right Click on the BuildFile.xml file
+2. Select Open Developer Command Prompt
+3. Type the following command: "msbuild safe_web_app.sln"
+4. Build will be executed in sequence defined above
