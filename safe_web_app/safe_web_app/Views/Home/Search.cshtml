@@ -19,7 +19,7 @@
         <div class="col-md-4">
             <h2><img src="~/Images/@app.imageUrl" alt="" height="42" width="42" /> @app.title</h2>
             <p>
-                @app.app_desc
+                <a style="color:black" href="@Url.Action("Comment", "Home", new { appId = app.id })"> @app.app_desc</a>
             </p>
             <p>
                 <strong>Rating: </strong>@app.rating

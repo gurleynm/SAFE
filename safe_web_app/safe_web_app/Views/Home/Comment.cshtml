@@ -38,7 +38,7 @@
     <p>
         <strong>Rating: </strong>@{if (Model.application.numOfPeopleWhoRated == 0)
             {
-            <p>No ratings yet.</p> }
+            <p>@Model.application.rating</p> }
         else
         {
 
