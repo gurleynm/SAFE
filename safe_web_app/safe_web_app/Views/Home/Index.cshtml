@@ -17,7 +17,11 @@
         foreach (var app in Model)
         {
             double result = (double)(app.sumOfRates / app.numOfPeopleWhoRated);
-            double rating = Math.Round(result, 1, MidpointRounding.AwayFromZero);
+            double rating = Math.Round(result, 2, MidpointRounding.AwayFromZero);
+            if (app.numOfPeopleWhoRated == 0)
+            {
+                rating = (double)(app.rating);
+            }
             count++;
             if (count > 3)
             {

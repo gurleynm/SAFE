@@ -20,7 +20,7 @@ namespace safe_web_app.Controllers
 
         public ActionResult Index()
         {
-            var Model = db.Applications.Where(x => x.approved == true).ToList();
+            var Model = db.Applications.Where(x => x.approved == true).OrderByDescending(x => x.rating).ToList();
             return View(Model);
         }
 
@@ -122,6 +122,7 @@ namespace safe_web_app.Controllers
             var application = db.Applications.Find(appId);
             application.sumOfRates += rate;
             application.numOfPeopleWhoRated += 1;
+            application.rating = application.sumOfRates / application.numOfPeopleWhoRated;
             if (application != null)
             {
                 if (comment != "")
@@ -159,6 +160,7 @@ namespace safe_web_app.Controllers
                 genre = model.Genre,
                 app_desc = model.Description,
                 price = model.Price,
+                rating = 0,
                 url = model.Url,
                 approved = false,
                 sumOfRates = 0,
