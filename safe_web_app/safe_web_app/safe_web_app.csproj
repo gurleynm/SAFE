@@ -251,6 +251,14 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\background.jpg" />
+    <Content Include="Images\emptyStar.jpg" />
+    <Content Include="Images\fullStar.jpg" />
+    <Content Include="Images\halfStar.jpg" />
+    <Content Include="Images\icon.JPG" />
+    <Content Include="Images\insta.jpg" />
+    <Content Include="Images\reddit.png" />
+    <Content Include="Images\spotify.png" />
     <Content Include="Models\SafeDb.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SafeDb.edmx</DependentUpon>
@@ -273,6 +281,7 @@
     <Content Include="Models\SafeDb.edmx.diagram">
       <DependentUpon>SafeDb.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\cse201 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
