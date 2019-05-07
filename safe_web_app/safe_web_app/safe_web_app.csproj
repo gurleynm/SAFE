@@ -252,12 +252,15 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\background.jpg" />
+    <Content Include="Images\cata.JPG" />
     <Content Include="Images\emptyStar.jpg" />
     <Content Include="Images\fullStar.jpg" />
     <Content Include="Images\halfStar.jpg" />
     <Content Include="Images\icon.JPG" />
     <Content Include="Images\insta.jpg" />
+    <Content Include="Images\log.JPG" />
     <Content Include="Images\reddit.png" />
+    <Content Include="Images\safe.JPG" />
     <Content Include="Images\spotify.png" />
     <Content Include="Models\SafeDb.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
