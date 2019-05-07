@@ -64,16 +64,11 @@
             int countCatch = 0;
             while (count < Model.applications.Count)
             {
-                countCatch = count;
-                while (countCatch % 3 != 0)
-                {
-                    countCatch++;
-                    <div class="col-md-4" style="height:300px;"></div>
-                }
                 <h2><u>@Model.applications[count].genre</u></h2>
                 prev = count;
                 for (int j = 1; count < Model.applications.Count && Model.applications[count].genre == Model.applications[prev].genre; count++)
                 {
+                    countCatch++;
                     Application app = Model.applications[count];
 
                     double result = (double)(app.sumOfRates / app.numOfPeopleWhoRated);
@@ -121,6 +116,12 @@
                             <a class="btn btn-primary" href="@app.url" target="_blank">Learn more &raquo;</a>
                         </p>
                     </div>
+                }
+
+                while (countCatch % 3 != 0)
+                {
+                    countCatch++;
+                    <div class="col-md-4" style="height:300px;"></div>
                 }
             }
         }
