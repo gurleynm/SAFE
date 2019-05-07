@@ -28,7 +28,7 @@ namespace safe_web_app.Controllers
         {
             var Model = new CatalogueViewModel()
             {
-                applications = db.Applications.Where(x => x.approved == true).ToList(),
+                applications = db.Applications.Where(x => x.approved == true).OrderByDescending(x => x.genre).ToList(),
                 genres = new List<string>(),
                 developers = new List<string>()
             };
