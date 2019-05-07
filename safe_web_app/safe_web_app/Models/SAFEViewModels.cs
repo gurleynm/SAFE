@@ -26,7 +26,15 @@ namespace safe_web_app.Models
 
         [Display(Name = "Url")]
         [MaxLength(200)]
-        public string Url { get; set; }        
+        public string Url { get; set; }
+
+        [Display(Name = "ImageUrl")]
+        [MaxLength(200)]
+        public string ImageUrl { get; set; }
+
+        [Display(Name = "Developer")]
+        [MaxLength(200)]
+        public string Developer { get; set; }
     }
     
     public class CommentViewModel

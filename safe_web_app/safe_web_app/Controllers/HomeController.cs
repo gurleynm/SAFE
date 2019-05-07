@@ -141,6 +141,7 @@ namespace safe_web_app.Controllers
             return RedirectToAction("Comment", "Home", new { appId = appId });
         }
 
+
         // POST: /Home/SubmitRequest
         [HttpPost]
         [AllowAnonymous]
@@ -161,6 +162,7 @@ namespace safe_web_app.Controllers
                 app_desc = model.Description,
                 price = model.Price,
                 rating = 0,
+                imageUrl = model.ImageUrl,
                 url = model.Url,
                 approved = false,
                 sumOfRates = 0,

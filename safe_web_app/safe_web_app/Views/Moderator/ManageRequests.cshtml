@@ -33,6 +33,7 @@ else
                     <td>@request.price</td>
                     <td>@request.url</td>
                     <td>@request.app_desc</td>
+                    <td>@request.imageUrl</td>
                     <td><a href="@Url.Action("ApproveRequest", "Moderator", new { id = request.id })"> Approve</a></td>
                     <td><a href="@Url.Action("DenyRequest", "Moderator", new { id = request.id })"> Deny</a></td>
                 </tr>
