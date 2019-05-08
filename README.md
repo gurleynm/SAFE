@@ -11,10 +11,10 @@
 
 ## Screenshots
 
-### Homepage
+**Homepage**
 ![Image Of Homepage](https://github.com/gurleynm/SAFE/blob/master/SAFE-Homepage.png)
 
-### Catalog
+**Catalog**
 ![Image Of Catalog](https://github.com/gurleynm/SAFE/blob/master/SAFE-Catalog.png)
 
 ## Database Info
