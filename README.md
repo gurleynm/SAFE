@@ -1,9 +1,9 @@
 # SAFE
-Enc-APP-sulate presents:
+> Enc-APP-sulate presents:
 
-S.A.F.E - Searchable Apps For Everyone
+> S.A.F.E - Searchable Apps For Everyone
 
-This application provides a way for people to search and rate popular applications. Users can search by genre, developer, title, and rating. Users are also able to submit requests to add applications to the catalog. This functions similarly to an app store such as Google Play but is more user-interactive.
+> This application provides a way for people to search and rate popular applications. Users can search by genre, developer, title, and rating. Users are also able to submit requests to add applications to the catalog. This functions similarly to an app store such as Google Play but is more user-interactive.
 
 
 ## Database Info
