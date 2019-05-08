@@ -27,5 +27,5 @@ You can access the database from either Visual Studio or SQL Server Management S
 ## .NET Info
 This project uses the default .NET MVC Project template. Out of the box, this project includes a ton of files and information and can be very intimidating at first. However, it is actually very simple, you just have to ignore all the clutter. Let me know and I'm happy to explain the entire structure, etc.
 
-# Team
+## Team
 > Nathan Gurley, Stuart Green, Karan Gupta, Yangkai Zhang, Gregory Wnek
