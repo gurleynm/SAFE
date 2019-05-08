@@ -44,4 +44,5 @@ This project uses the default .NET MVC Project template. Out of the box, this pr
 
 ## Support
 > support@encappsulate.com
-> 1-800-220-SAFE
+
+> **1-800-220-SAFE**
