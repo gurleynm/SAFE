@@ -5,9 +5,6 @@
 
 > This application provides a way for people to search and rate popular applications. Users can search by genre, developer, title, and rating. Users are also able to submit requests to add applications to the catalog. This functions similarly to an app store such as Google Play but is more user-interactive.
 
->appstore store applications catalog
-
-
 ## Database Info
 Our database for this project is hosted in the cloud (with Microsoft Azure) so that we can all access it remotely from anywhere without all the trouble of maintaining a local database.
 
