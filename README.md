@@ -1,7 +1,9 @@
 # SAFE
-CSE 201 Project
+Enc-APP-sulate presents:
 
-This repo holds the files to be used in our catalgoue app. After every coding session, a developer should commit their ASP.NET or SQL code to this repo. 
+S.A.F.E - Searchable Apps For Everyone
+
+This application provides a way for people to search and rate popular applications. Users can search by genre, developer, title, and rating. Users are also able to submit requests to add applications to the catalog. This functions similarly to an app store such as Google Play but is more user-interactive.
 
 
 ## Database Info
