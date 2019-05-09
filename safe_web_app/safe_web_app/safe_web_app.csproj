@@ -220,6 +220,9 @@
     <Compile Include="Models\Comment.cs">
       <DependentUpon>SafeDb.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\FAQ.cs">
+      <DependentUpon>SafeDb.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ModeratorViewModels.cs" />
@@ -336,6 +339,7 @@
     <Content Include="Views\Moderator\ManageRequests.cshtml" />
     <Content Include="Views\Home\Comment.cshtml" />
     <Content Include="Views\Home\ManageUsers.cshtml" />
+    <Content Include="Views\Home\FAQ.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

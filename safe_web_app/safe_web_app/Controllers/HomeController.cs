@@ -255,6 +255,33 @@ namespace safe_web_app.Controllers
             return RedirectToAction("Comment", "Home", new { appId = appId });
         }
 
+        // POST: /Home/SubmitFAQ
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult FAQ(FAQViewModel model, string returnUrl)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Submitted = false;
+                return View(model);
+            }
+
+            //Create the new Application object, flag it as not approved
+            var request = new FAQ()
+            {
+                name = User.Identity.GetUserName(),
+                question = model.Question
+            };
+
+            //Save the Application to the DB
+            db.FAQs.Add(request);
+            db.SaveChanges();
+
+            ViewBag.Submitted = true;
+            return View();
+        }
+
 
         // POST: /Home/SubmitRequest
         [HttpPost]
