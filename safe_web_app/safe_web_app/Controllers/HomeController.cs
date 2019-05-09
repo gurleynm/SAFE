@@ -342,6 +342,15 @@ namespace safe_web_app.Controllers
         }
 
 
+        /// <summary>
+        /// Allows an admin to delete a user
+        /// </summary>
+        /// <param name="id">
+        /// The ID of the user
+        /// </param>        
+        /// <returns>
+        /// Returns the user to the user manager page
+        /// </returns>
         public ActionResult DeleteUser(string id)
         {
             var user = UserManager.FindById(id);
@@ -353,6 +362,18 @@ namespace safe_web_app.Controllers
             return RedirectToAction("ManageUsers", "Home");
         }
 
+        /// <summary>
+        /// Adds a user to a role
+        /// </summary>
+        /// <param name="userId">
+        /// The ID of the user
+        /// </param>
+        /// <param name="role">
+        /// The name of the role
+        /// </param>
+        /// <returns>
+        /// Returns the user to the user manager page
+        /// </returns>
         public ActionResult AddUserToRole(string userId, string role)
         {
             var user = UserManager.FindById(userId);
@@ -364,6 +385,19 @@ namespace safe_web_app.Controllers
             return RedirectToAction("ManageUsers", "Home");
         }
 
+
+        /// <summary>
+        /// Removes a user to a role
+        /// </summary>
+        /// <param name="userId">
+        /// The ID of the user
+        /// </param>
+        /// <param name="role">
+        /// The name of the role
+        /// </param>
+        /// <returns>
+        /// Returns the user to the user manager page
+        /// </returns>
         public ActionResult RemoveUserFromRole(string userId, string role)
         {
             var user = UserManager.FindById(userId);
