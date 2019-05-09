@@ -5,7 +5,8 @@
 }
 
 <h4>Manage Requests</h4>
-
+@*Page for the admin to approve or deny requests*@
+@*If the number of requests is 0*@
 @if (Model.requests.Count == 0)
 {
     <p style="color:red;">
@@ -14,6 +15,7 @@
 }
 else
 {
+@*Otherwise, pulls from the requests DB and puts it in tabular form*@
     <table class="table">
         <tbody>
             @foreach (var request in Model.requests)
@@ -34,6 +36,7 @@ else
                     <td>@request.url</td>
                     <td>@request.app_desc</td>
                     <td>@request.imageUrl</td>
+                    @*Allows admin to approve or deny request*@
                     <td><a href="@Url.Action("ApproveRequest", "Moderator", new { id = request.id })"> Approve</a></td>
                     <td><a href="@Url.Action("DenyRequest", "Moderator", new { id = request.id })"> Deny</a></td>
                 </tr>
