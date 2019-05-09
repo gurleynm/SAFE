@@ -36,12 +36,9 @@
                     @if (User.IsInRole("Moderator") || User.IsInRole("Admin") || User.IsInRole("User"))
                     {
                         <li><a href="@Url.Action("SubmitRequest", "Home")" style="color:white">Submit Request</a></li>
-                        if (!User.IsInRole("User"))
-                        {
-                            <li><a href="@Url.Action("ManageRequests", "Moderator")" style="color:white">Manage Requests</a></li>
-                        }
                         if (User.IsInRole("Admin"))
                         {
+                            <li><a href="@Url.Action("ManageRequests", "Moderator")" style="color:white">Manage Requests</a></li>
                             <li><a href="@Url.Action("ManageUsers", "Home")" style="color:white">Manage Users</a></li>
                         }
                     }
