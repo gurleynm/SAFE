@@ -16,7 +16,8 @@ namespace safe_web_app.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private RoleManager<IdentityRole> _roleManager;
-
+        
+        // Utilizes ASP's sign-in manager to verify user roles
         public ApplicationSignInManager SignInManager
         {
             get
@@ -28,7 +29,7 @@ namespace safe_web_app.Controllers
                 _signInManager = value;
             }
         }
-
+        // Verifies authenticity of passwords etc
         public ApplicationUserManager UserManager
         {
             get

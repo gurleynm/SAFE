@@ -12,6 +12,7 @@ namespace safe_web_app.Controllers
     {
         public CSE201Entities db;
 
+        // Connection to the database
         public ModeratorController()
         {
             this.db = new CSE201Entities();
@@ -25,6 +26,7 @@ namespace safe_web_app.Controllers
             return View(Model);
         }
 
+        // Allows the admin to deny an application request at a specific ID
         public ActionResult DenyRequest(int id)
         {
             var application = db.Applications.Find(id);
@@ -36,7 +38,7 @@ namespace safe_web_app.Controllers
             return RedirectToAction("ManageRequests", "Moderator");
         }
 
-
+        // Allows the admin to deny a request at a specific ID
         public ActionResult ApproveRequest(int id)
         {
             var application = db.Applications.Find(id);

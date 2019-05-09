@@ -25,13 +25,14 @@ namespace safe_web_app.Controllers
         public AccountController()
         {
         }
-
+        /// Sign in verification
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
         }
 
+        /// Identifies the role of the user
         public ApplicationSignInManager SignInManager
         {
             get

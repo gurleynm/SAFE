@@ -7,7 +7,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using safe_web_app.Models;
-
+// The majority of this controller is "out-of-the-box" ASP .NET functionalities
+// Few modifications made to differentiate user roles such as admins, moderators, and users
 namespace safe_web_app.Controllers
 {
     [Authorize]
