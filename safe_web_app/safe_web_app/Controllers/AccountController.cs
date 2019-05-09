@@ -19,7 +19,9 @@ namespace safe_web_app.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private RoleManager<IdentityRole> _roleManager;
-
+        /// <summary>
+        /// Dummy Constructor for an account controller
+        /// </summary>
         public AccountController()
         {
         }
