@@ -94,7 +94,7 @@ namespace safe_web_app {
         public void filterCat() {
             var genre = "Social";
             var developer = "Instagram";
-            var rate = "Any";
+            var rate = 1;
             HomeController controller = new HomeController();
             ViewResult vw = controller.FilterCatalogue(genre, developer, rate) as ViewResult;
             Assert.IsNotNull(vw);
