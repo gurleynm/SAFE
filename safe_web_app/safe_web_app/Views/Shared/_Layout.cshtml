@@ -17,6 +17,7 @@
 
 </head>
 <body>
+    @*Bootstrap/CSS that handles the navbar*@
     <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:darkgreen">
         <div class="container">
             <div class="navbar-header">
@@ -30,6 +31,7 @@
                 <ul class="nav navbar-nav" style="color:white">
                     <li><a href="@Url.Action("Index", "Home")" id="home" style="color:white"><img src="~/Images/icon.jpg" height="20" width="20" /> S.A.F.E</a></li>
                     <li><a href="@Url.Action("Catalogue", "Home")" style="color:white">Catalogue</a></li>
+                    @*Generates the correct page based on the type of user, admin or moderator*@
                     @if (User.IsInRole("Moderator") || User.IsInRole("Admin") || User.IsInRole("User"))
                     {
                         <li><a href="@Url.Action("SubmitRequest", "Home")" style="color:white">Submit Request</a></li>
@@ -42,7 +44,7 @@
                     <li><a href="@Url.Action("Contact", "Home")" style="color:white">Help</a></li>
                 </ul>
 
-
+                @*Search bar at top inside navbar. Post method takes user to results page*@
                 <form method="post" action="/Home/Search" class="form-inline pull-left" style="margin:10px">
                     <input name="input" class="form-control mr-sm-2" type="search" id="Search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="searchButton">Search</button>
@@ -51,7 +53,7 @@
             </div>
         </div>
     </div>
-
+    @*Generates current year and copyright message*@
     <div class="container body-content" style="background-color:white">
         @RenderBody()
         <hr />
