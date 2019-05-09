@@ -1,0 +1,73 @@
+﻿@using safe_web_app.Models
+@model UserManagerViewModel
+@{
+    ViewBag.Title = "User Manager";
+}
+
+<h2>User Manager</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Username</th>
+            <th scope="col">Roles</th>
+            <th scope="col">Add to Role</th>
+            <th scope="col">Remove Role</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.users)
+        {
+            <tr id="@user.Id">
+                <th scope="row">@user.Email</th>
+                <td>
+                    @foreach (var role in user.Roles.ToList())
+                    {
+                        foreach (var r in Model.roles)
+                        {
+                            if (role.RoleId == r.Id)
+                            {
+                                <span>@r.Name </span><br />;
+                            }
+                        }
+                    }
+                </td>
+                <td>
+                    <select id="SelectedRole_@user.Id" class="select2">
+                        @foreach (var role in Model.roles)
+                        {
+                            <option>@role.Name</option>
+                        }
+                    </select>
+                    <a style="cursor:pointer;" onclick="addToRole('@user.Id')">Add</a>
+                </td>
+                <td>
+                    <select id="SelectedRole_Delete_@user.Id" class="select2">
+                        @foreach (var role in Model.roles)
+                        {
+                            <option>@role.Name</option>
+                        }
+                    </select>
+                    <a style="cursor:pointer;" onclick="removeFromRole('@user.Id')">Remove</a>
+                </td>
+                <td><a href="@Url.Action("DeleteUser", "Home", new { id= user.Id })">Delete</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    function addToRole(id) {
+        var selectBox = document.getElementById("SelectedRole_" + id);
+        var selectedRole = selectBox.options[selectBox.selectedIndex].value;
+        window.location.href = "/Home/AddUserToRole/?userId=" + id + "&role=" + selectedRole;
+    }
+
+    function removeFromRole(id) {
+        var selectBox = document.getElementById("SelectedRole_Delete_" + id);
+        var selectedRole = selectBox.options[selectBox.selectedIndex].value;
+        window.location.href = "/Home/RemoveUserFromRole/?userId=" + id + "&role=" + selectedRole;
+    }
+</script>
+

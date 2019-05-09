@@ -10,6 +10,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="~/Images/icon.jpg" rel="shortcut icon" type="image/x-icon" />
+
     <title>@ViewBag.Title - S.A.F.E.</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -39,7 +40,10 @@
                         {
                             <li><a href="@Url.Action("ManageRequests", "Moderator")" style="color:white">Manage Requests</a></li>
                         }
-
+                        if (User.IsInRole("Admin"))
+                        {
+                            <li><a href="@Url.Action("ManageUsers", "Home")" style="color:white">Manage Users</a></li>
+                        }
                     }
                     <li><a href="@Url.Action("Contact", "Home")" style="color:white">Help</a></li>
                 </ul>
@@ -65,5 +69,14 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.select2').select2();
+        });
+    </script>
 </body>
 </html>

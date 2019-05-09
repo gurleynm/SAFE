@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -12,12 +13,12 @@ namespace safe_web_app.Models
         [Display(Name = "Title")]
         [MaxLength(50)]
         public string Title { get; set; }
-        
+
         [Display(Name = "Price")]
         [MaxLength(50)]
         public string Price { get; set; }
-        
-        [Display(Name = "Description")]        
+
+        [Display(Name = "Description")]
         public string Description { get; set; }
 
         [Display(Name = "Genre")]
@@ -36,7 +37,7 @@ namespace safe_web_app.Models
         [MaxLength(200)]
         public string Developer { get; set; }
     }
-    
+
     public class CommentViewModel
     {
         public Application application { get; set; }
@@ -49,4 +50,11 @@ namespace safe_web_app.Models
         public List<string> genres { get; set; }
         public List<string> developers { get; set; }
     }
+
+    public class UserManagerViewModel
+    {
+        public List<ApplicationUser> users { get; set; }
+        public List<IdentityRole> roles { get; set; }
+    }
+
 }

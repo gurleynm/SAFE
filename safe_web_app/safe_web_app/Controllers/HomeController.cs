@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
 using safe_web_app.Models;
 using System;
 using System.Collections.Generic;
@@ -12,6 +14,35 @@ namespace safe_web_app.Controllers
     {
 
         public CSE201Entities db;
+
+        private ApplicationUserManager _userManager;
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
+
+
+        private RoleManager<IdentityRole> _roleManager;
+        public RoleManager<IdentityRole> RoleManager
+        {
+            get
+            {
+                if (_roleManager == null)
+                {
+                    _roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
+                }
+                return _roleManager;
+            }
+            set { _roleManager = value; }
+        }
+
         /// <summary>
         /// Connection to database
         /// </summary>
@@ -85,6 +116,23 @@ namespace safe_web_app.Controllers
         {
             return View();
         }
+
+
+        /// <summary>
+        /// Generates the user manager page
+        /// </summary>
+        /// <returns>
+        /// Returns the user manager view
+        /// </returns>
+        public ActionResult ManageUsers()
+        {
+            var Model = new UserManagerViewModel();
+            Model.users = UserManager.Users.ToList();
+            Model.roles = RoleManager.Roles.ToList();
+            return View(Model);
+        }
+
+
         /// <summary>
         /// Facilitates the filter functionality
         /// </summary>
@@ -264,6 +312,40 @@ namespace safe_web_app.Controllers
             }
 
             return RedirectToAction("Comment", "Home", new { appId = appId });
+        }
+
+
+        public ActionResult DeleteUser(string id)
+        {
+            var user = UserManager.FindById(id);
+            if (user != null)
+            {
+                UserManager.Delete(user);
+            }
+
+            return RedirectToAction("ManageUsers", "Home");
+        }
+
+        public ActionResult AddUserToRole(string userId, string role)
+        {
+            var user = UserManager.FindById(userId);
+            if (user != null)
+            {
+                UserManager.AddToRole(userId, role);                
+            }
+
+            return RedirectToAction("ManageUsers", "Home");
+        }
+
+        public ActionResult RemoveUserFromRole(string userId, string role)
+        {
+            var user = UserManager.FindById(userId);
+            if (user != null)
+            {
+                UserManager.RemoveFromRole(userId, role);
+            }
+
+            return RedirectToAction("ManageUsers", "Home");
         }
     }
 }
