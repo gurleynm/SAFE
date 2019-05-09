@@ -1,4 +1,5 @@
-﻿using safe_web_app.Models;
+﻿using Microsoft.AspNet.Identity;
+using safe_web_app.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,24 +12,62 @@ namespace safe_web_app.Controllers
     {
 
         public CSE201Entities db;
-
+        /// <summary>
+        /// Connection to database
+        /// </summary>
         public HomeController()
         {
             this.db = new CSE201Entities();
         }
-
+        /// <summary>
+        /// Pulls all applications from the database, ordered by rating in descending order
+        /// </summary>
+        /// <returns>
+        /// Returns the list of appllications
+        /// </returns>
         public ActionResult Index()
         {
-            var Model = db.Applications.Where(x => x.approved == true).ToList();
+            var Model = db.Applications.Where(x => x.approved == true).OrderByDescending(x => x.rating).ToList();
             return View(Model);
         }
-
+        /// <summary>
+        /// Pulls genres and developers from database for filtering
+        /// </summary>
+        /// <returns>
+        /// Returns a list of genres and developers from database
+        /// </returns>
         public ActionResult Catalogue()
         {
-            var Model = db.Applications.Where(x => x.approved == true).ToList();
+            var Model = new CatalogueViewModel()
+            {
+                applications = db.Applications.Where(x => x.approved == true).OrderByDescending(x => x.genre).ToList(),
+                genres = new List<string>(),
+                developers = new List<string>()
+            };
+
+            foreach (var app in Model.applications)
+            {
+                if (!Model.genres.Contains(app.genre))
+                {
+                    Model.genres.Add(app.genre);
+                }
+                if (!Model.developers.Contains(app.developer))
+                {
+                    Model.developers.Add(app.developer);
+                }
+            }
+
             return View(Model);
         }
-
+        /// <summary>
+        /// Pulls the comments for each application from the database
+        /// </summary>
+        /// <param name="appId">
+        /// Only pulls comments for apps with the matching ID
+        /// </param>
+        /// <returns>
+        /// Returns the comments from the database for the specific app
+        /// </returns>
         public ActionResult Comment(int appId)
         {
             CommentViewModel Model = new CommentViewModel();
@@ -36,19 +75,88 @@ namespace safe_web_app.Controllers
             Model.comments = db.Comments.Where(x => x.appId == appId).ToList();
             return View(Model);
         }
-
+        /// <summary>
+        /// Generates the contact page
+        /// </summary>
+        /// <returns>
+        /// Returns the contact view
+        /// </returns>
         public ActionResult Contact()
         {
             return View();
         }
+        /// <summary>
+        /// Facilitates the filter functionality
+        /// </summary>
+        /// <param name="genre">
+        /// Filters by a specific genre
+        /// </param>
+        /// <param name="developer">
+        /// Filters by a specific developer
+        /// </param>
+        /// <param name="rating">
+        /// Filters by rating less than or equal to the rating specified
+        /// </param>
+        /// <returns>
+        /// Returns the results of the filtering
+        /// </returns>
+        [HttpPost]
+        public ActionResult FilterCatalogue(string genre, string developer, int rating)
+        {
+            var Model = new CatalogueViewModel();
+            Model.applications = db.Applications.Where(x => x.approved == true).ToList();
+            Model.genres = new List<string>();
+            Model.developers = new List<string>();
 
+            foreach (var app in Model.applications)
+            {
+                if (!Model.genres.Contains(app.genre))
+                {
+                    Model.genres.Add(app.genre);
+                }
+                if (!Model.developers.Contains(app.developer))
+                {
+                    Model.developers.Add(app.developer);
+                }
+            }
+
+            //Filter the results by the provided filters
+            if (genre != "Any")
+            {
+                Model.applications = Model.applications.Where(x => x.genre == genre).ToList();
+            }
+            if (developer != "Any")
+            {
+                Model.applications = Model.applications.Where(x => x.developer == developer).ToList();
+            }
+            if (rating != 0)
+            {
+                Model.applications = Model.applications.Where(x => x.rating >= rating).ToList();
+            }
+
+            return View("~/Views/Home/Catalogue.cshtml", Model);
+        }
+        /// <summary>
+        /// Allows user to submit request only if the user is logged in
+        /// </summary>
+        /// <returns>
+        /// Returns to the view
+        /// </returns>
         public ActionResult SubmitRequest()
         {
             if (!User.Identity.IsAuthenticated) return RedirectToAction("Login", "Account");
             ViewBag.Submitted = false;
             return View();
         }
-
+        /// <summary>
+        /// Search functionality
+        /// </summary>
+        /// <param name="input">
+        /// Genre or title that the user wishes to search
+        /// </param>
+        /// <returns>
+        /// Returns the applications that match the query
+        /// </returns>
         public ActionResult Search(string input)
         {
             //If the input is blank, return a blank result
@@ -59,52 +167,46 @@ namespace safe_web_app.Controllers
             return View(Model);
         }
 
-
+        /// <summary>
+        /// Allows a logged in user to submit a comment regarding a specific application
+        /// </summary>
+        /// <param name="appId">
+        /// The ID of the app the user is commenting on
+        /// </param>
+        /// <param name="comment">
+        /// The comment the user makes on the app
+        /// </param>
+        /// <param name="rate">
+        /// The rating the user gives the app
+        /// </param>
+        /// <returns>
+        /// Returns the user to the app's details page
+        /// </returns>
         [HttpPost]
-        public ActionResult SubmitComment(int appId, string comment, string name)
+        public ActionResult SubmitComment(int appId, string comment, double rate)
         {
             var application = db.Applications.Find(appId);
+            application.sumOfRates += rate;
+            application.numOfPeopleWhoRated += 1;
+            application.rating = application.sumOfRates / application.numOfPeopleWhoRated;
             if (application != null)
             {
-                var c = new Comment()
+                if (comment != "")
                 {
-                    appId = appId,
-                    comment1 = comment,
-                    name = name
-                };
-                db.Comments.Add(c);
+                    var c = new Comment()
+                    {
+                        appId = appId,
+                        comment1 = comment,
+                        name = User.Identity.GetUserName(),
+                        rating = rate
+                    };
+                    db.Comments.Add(c);
+                }
                 db.SaveChanges();
             }
             return RedirectToAction("Comment", "Home", new { appId = appId });
         }
 
-        // POST: /Home/SubmitRequest
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public ActionResult Comment(CommentViewModel model, string returnUrl)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-
-
-            List<Comment> m = model.comments.ToList();
-
-            //Create the new Application object, flag it as not approved
-            var request = new Comment()
-            {
-                appId = 1,
-                comment1 = m[0].comment1
-            };
-
-            //Save the Comment to the DB
-            db.Comments.Add(request);
-            db.SaveChanges();
-
-            return View();
-        }
 
         // POST: /Home/SubmitRequest
         [HttpPost]
@@ -125,8 +227,12 @@ namespace safe_web_app.Controllers
                 genre = model.Genre,
                 app_desc = model.Description,
                 price = model.Price,
+                rating = 0,
+                imageUrl = model.ImageUrl,
                 url = model.Url,
-                approved = false
+                approved = false,
+                sumOfRates = 0,
+                numOfPeopleWhoRated = 0
             };
 
             //Save the Application to the DB
@@ -135,6 +241,29 @@ namespace safe_web_app.Controllers
 
             ViewBag.Submitted = true;
             return View();
+        }
+        /// <summary>
+        /// Allows a moderator to delete a comment made by a user
+        /// </summary>
+        /// <param name="commentId">
+        /// The ID of the comment itself
+        /// </param>
+        /// <param name="appId">
+        /// The ID of the comment's application
+        /// </param>
+        /// <returns>
+        /// Returns the user to the app's detailed page
+        /// </returns>
+        public ActionResult DeleteComment(int commentId, int appId)
+        {
+            var comment = db.Comments.Find(commentId);
+            if (comment != null)
+            {
+                db.Comments.Remove(comment);
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Comment", "Home", new { appId = appId });
         }
     }
 }
