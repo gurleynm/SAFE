@@ -32,9 +32,19 @@
           <Property Name="comment" Type="varchar(max)" />
           <Property Name="rating" Type="float" />
         </EntityType>
+        <EntityType Name="FAQ">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="90" />
+          <Property Name="question" Type="varchar(max)" />
+          <Property Name="enteredAt" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
         <EntityContainer Name="CSE201ModelStoreContainer">
           <EntitySet Name="Applications" EntityType="Self.Applications" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FAQ" EntityType="Self.FAQ" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -60,6 +70,7 @@
         <EntityContainer Name="CSE201Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Applications" EntityType="Self.Application" />
           <EntitySet Name="Comments" EntityType="CSE201Model.Comment" />
+          <EntitySet Name="FAQs" EntityType="CSE201Model.FAQ" />
           </EntityContainer>
         <EntityType Name="Comment">
           <Key>
@@ -70,6 +81,15 @@
           <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="comment1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="rating" Type="Double" />
+        </EntityType>
+        <EntityType Name="FAQ">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="90" FixedLength="false" Unicode="false" />
+          <Property Name="question" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="enteredAt" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -103,6 +123,16 @@
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="appId" ColumnName="appId" />
                 <ScalarProperty Name="commentId" ColumnName="commentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FAQs">
+            <EntityTypeMapping TypeName="CSE201Model.FAQ">
+              <MappingFragment StoreEntitySet="FAQ">
+                <ScalarProperty Name="enteredAt" ColumnName="enteredAt" />
+                <ScalarProperty Name="question" ColumnName="question" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

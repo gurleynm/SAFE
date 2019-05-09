@@ -36,7 +36,19 @@ namespace safe_web_app.Models
         [MaxLength(200)]
         public string Developer { get; set; }
     }
-    
+
+    public class FAQViewModel
+    {
+        [Required]
+        [Display(Name = "Name")]
+        [MaxLength(50)]
+        public string Name { get; set; }
+
+        [Display(Name = "Question")]
+        public string Question { get; set; }
+    }
+
+
     public class CommentViewModel
     {
         public Application application { get; set; }
