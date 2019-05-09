@@ -40,7 +40,6 @@ namespace safe_web_app.Models
 
     public class FAQViewModel
     {
-        [Required]
         [Display(Name = "Name")]
         [MaxLength(50)]
         public string Name { get; set; }

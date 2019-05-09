@@ -71,24 +71,6 @@ namespace safe_web_app {
             // Assert
             Assert.IsNotNull(result);
         }
-        [TestMethod]
-        public void SubmitComment() {
-            var appId = 1;
-            var comment = "this is a test";
-            var rate = 3.5;
-            HomeController controller = new HomeController();
-            ViewResult vw = controller.SubmitComment(appId, comment, rate) as ViewResult;
-            Assert.IsNotNull(vw);
-        }
-        [TestMethod]
-        public void DeleteComment()
-        {
-            var commentId = 1;
-            var appId = 1;
-            HomeController controller = new HomeController();
-            ViewResult vw = controller.DeleteComment(commentId, appId) as ViewResult;
-            Assert.IsNotNull(vw);
-        }
 
         [TestMethod]
         public void filterCat() {

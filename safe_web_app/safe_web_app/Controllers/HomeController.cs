@@ -255,18 +255,27 @@ namespace safe_web_app.Controllers
             return RedirectToAction("Comment", "Home", new { appId = appId });
         }
 
+
+        /// <summary>
+        /// Pulls all applications from the database, ordered by rating in descending order
+        /// </summary>
+        /// <returns>
+        /// Returns the list of appllications
+        /// </returns>
+        public ActionResult FAQ()
+        {
+            var Model = new FAQViewModel();
+            Model.Name = User.Identity.GetUserName();
+            ViewBag.Submitted = false;
+            return View(Model);
+        }
+
         // POST: /Home/SubmitFAQ
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult FAQ(FAQViewModel model, string returnUrl)
         {
-            if (!ModelState.IsValid)
-            {
-                ViewBag.Submitted = false;
-                return View(model);
-            }
-
             //Create the new Application object, flag it as not approved
             var request = new FAQ()
             {
