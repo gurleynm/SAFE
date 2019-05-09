@@ -18,31 +18,35 @@
         text-align: center;
     }
 </style>
-
+@*Generates the whole catalog and pulls all apps from the DB*@
 <body style="background-image:url('../../Images/background.jpg')">
     <h1><u>Full App Catalogue</u></h1>
     <br />
+
     <form method="post" action="/Home/FilterCatalogue" class="form-inline">
+        @*Form for filtering results: Genre*@
         <div class="form-group mb-2">
             <label>Genre:</label>
             <select name="genre">
                 <option value="Any">Any</option>
                 @foreach (var g in Model.genres)
                 {
-                    <option>@g</option>
+                <option>@g</option>
                 }
             </select>
         </div>
+        @*Form for filtering results: Developer*@
         <div class="form-group mb-2">
             <label>Developer:</label>
             <select name="developer">
                 <option value="Any">Any</option>
                 @foreach (var d in Model.developers)
                 {
-                    <option>@d</option>
+                <option>@d</option>
                 }
             </select>
         </div>
+        @*Form for filtering results: Rating*@
         <div class="form-group mb-2">
             <label>Rating:</label>
             <select name="rating">
@@ -79,6 +83,7 @@
                             <a style="color:black" href="@Url.Action("Comment", "Home", new { appId = app.id })">@app.app_desc</a>
                         </p>
                         <p>
+                            @*Calculates rating*@
                             <strong>Rating: </strong>
                             @if (app.numOfPeopleWhoRated == 0)
                             {
@@ -86,6 +91,7 @@
                             }
                             <span>@rating</span>
                             @{
+                            @*Generates star image based on rating*@
                                 for (int i = 1; i < rating; i++)
                                 {
                                     <img src="~/Images/fullStar.jpg" alt="fullStar" height="20" width="20" />
@@ -117,7 +123,7 @@
                         </p>
                     </div>
                 }
-
+                @*Handles proper spacing*@
                 while (countCatch % 3 != 0)
                 {
                     countCatch++;

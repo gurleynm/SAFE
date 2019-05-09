@@ -29,12 +29,14 @@
             cursor: pointer;
         }
 </style>
-
+@*Page where users can comment or view comments*@
 <div class="col-md-12">
+    @*Pulls the app's info from DB*@
     <h2><img src="@Model.application.imageUrl" alt="" height="42" width="42" /> @Model.application.title</h2>
     <p>
         @Model.application.app_desc
     </p>
+    @*Pulls and calculates the rating based on total ratings and number of people who rated*@
     <p>
         <strong>Rating: </strong>@{if (Model.application.numOfPeopleWhoRated == 0)
             {
@@ -71,6 +73,7 @@
             }
             <br />
             <br />
+            @*Lists price from DB*@
             <div>Price: @Model.application.price</div>
             <br />
             <a href="@Model.application.url" target="_blank">Get it here</a>
@@ -78,6 +81,7 @@
         </p>
     </div>
     <br />
+@*Generates comments pulled from DB based on app ID*@
     <div class="col-md-12">
         <h3>Comments:</h3>
         <table style="width:100%; border:1px solid black;" id="Comments">
@@ -118,6 +122,7 @@
                             }
                         }
                     </td>
+                    @*If the user is a moderator the user can delete comments*@
                     @if (User.IsInRole("Moderator"))
                     {
                         <td><a href="@Url.Action("DeleteComment", "Home", new { commentId = c.commentId, appId = Model.application.id})" style="color:red;">Delete Comment</a></td>
@@ -130,6 +135,7 @@
     </div>
     <br />
     <br />
+    @*Allows the user to comment IF the user is logged in*@
     <div class="col-md-12">
         @if (User.Identity.IsAuthenticated)
         {
@@ -157,6 +163,7 @@
             </table>
         }
         else
+        @*Prompts to login/register if not logged in*@
         {
             <h3>Please <a href="/Account/Login">Log in</a> to Submit a Comment</h3>
         }

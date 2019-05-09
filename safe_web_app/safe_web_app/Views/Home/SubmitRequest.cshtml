@@ -4,6 +4,8 @@
     ViewBag.Title = "Submit Request";
 }
 
+@*Request page where users can submit application requests to admin for review*@
+
 <h2>Submit Request</h2>
 <div class="row">
     <div class="col-md-8">
@@ -14,7 +16,9 @@
                 <h4>Please fill out the app's details.</h4>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @*Beginning of form to submit request. Requires Title, Price, URL, Genre, and Description*@
                 <div class="form-group">
+                    @*Title variable*@
                     @Html.LabelFor(m => m.Title, new { @class = "col-md-2 control-label" })
                     <div class="col-md-10">
                         @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
@@ -22,6 +26,7 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    @*Price variable*@
                     @Html.LabelFor(m => m.Price, new { @class = "col-md-2 control-label" })
                     <div class="col-md-10">
                         @Html.TextBoxFor(m => m.Price, new { @class = "form-control" })
@@ -29,6 +34,7 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    @*URL variable*@
                     @Html.LabelFor(m => m.Url, new { @class = "col-md-2 control-label" })
                     <div class="col-md-10">
                         @Html.TextBoxFor(m => m.Url, new { @class = "form-control" })
@@ -43,6 +49,7 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    @*Developer variable*@
                     @Html.LabelFor(m => m.Developer, new { @class = "col-md-2 control-label" })
                     <div class="col-md-10">
                         @Html.TextBoxFor(m => m.Developer, new { @class = "form-control" })
@@ -50,6 +57,7 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    @*Genre variable*@
                     @Html.LabelFor(m => m.Genre, new { @class = "col-md-2 control-label" })
                     <div class="col-md-10">
                         @Html.TextBoxFor(m => m.Genre, new { @class = "form-control" })
@@ -57,13 +65,14 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    @*Description variable*@
                     @Html.LabelFor(m => m.Description, new { @class = "col-md-2 control-label" })
                     <div class="col-md-10">
                         @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
+                @*Submit button*@
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <input type="submit" value="Submit" class="btn btn-default" />
