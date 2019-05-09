@@ -5,6 +5,8 @@
 
 > This application provides a way for people to search and rate popular applications. Users can search by genre, developer, title, and rating. Users are also able to submit requests to add applications to the catalog. This functions similarly to an app store such as Google Play but is more user-interactive.
 
+> URL: cse201.azurewebsites.net
+
 ## Badges
 [![Build Status](http://img.shields.io/travis/badges/badgerbadgerbadger.svg?style=flat-square)](https://travis-ci.org/badges/badgerbadgerbadger)
 [![Coverage Status](http://img.shields.io/coveralls/badges/badgerbadgerbadger.svg?style=flat-square)](https://coveralls.io/r/badges/badgerbadgerbadger)
