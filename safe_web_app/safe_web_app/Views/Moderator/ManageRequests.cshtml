@@ -49,14 +49,14 @@ else
 <h4>FAQs</h4>
 <table class="table">
     <tbody>
+        <tr>
+            <th>Name</th>
+            <th>Question</th>
+            <th></th>
+            <th></th>
+        </tr>
         @foreach (var request in Model.faqs)
         {
-            <tr>
-                <th>Name</th>
-                <th>Question</th>
-                <th></th>
-                <th></th>
-            </tr>
             <tr>
                 <td>@request.name</td>
                 <td>@request.question</td>
