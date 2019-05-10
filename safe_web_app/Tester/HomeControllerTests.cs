@@ -29,8 +29,8 @@ namespace safe_web_app {
             var comment = "this is a test";
             var rate = 3.5;
             HomeController controller = new HomeController();
-            var vw = controller.SubmitComment(appId, comment, rate);
-            Assert.IsNotNull(controller);
+            ViewResult vw = controller.SubmitComment(appId, comment, rate) as ViewResult;
+            Assert.IsNotNull(vw);
         }
         [TestMethod]
         public void DeleteComment()

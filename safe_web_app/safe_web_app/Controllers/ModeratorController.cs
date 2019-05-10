@@ -23,6 +23,7 @@ namespace safe_web_app.Controllers
         {
             var Model = new ManageRequestsViewModel();
             Model.requests = db.Applications.Where(x => x.approved == false).ToList();
+            Model.faqs = db.FAQs.ToList();
             return View(Model);
         }
 

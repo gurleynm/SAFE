@@ -1,15 +1,25 @@
 ﻿@using Microsoft.AspNet.Identity
-@if (Request.IsAuthenticated) { 
+@if (Request.IsAuthenticated) {
 
 @*Login view for users. Mostly out-of-the-box ASP .NET*@
 
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-    {
+using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+{
     @Html.AntiForgeryToken()
 
     <ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            @{string name;
+            if (User.Identity.GetUserName().Length > 10)
+            {
+                name = "User";
+            }
+            else
+            {
+                name = User.Identity.GetUserName();
+            }
+            @Html.ActionLink("Hello " + name + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                }
         </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
     </ul>

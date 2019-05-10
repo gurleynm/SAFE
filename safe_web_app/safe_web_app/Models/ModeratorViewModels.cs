@@ -8,5 +8,6 @@ namespace safe_web_app.Models
     public class ManageRequestsViewModel
     {
         public List<Application> requests { get; set; }
+        public List<FAQ> faqs { get; set; }
     }
 }

@@ -15,20 +15,20 @@
 }
 else
 {
-@*Otherwise, pulls from the requests DB and puts it in tabular form*@
+    @*Otherwise, pulls from the requests DB and puts it in tabular form*@
     <table class="table">
         <tbody>
             @foreach (var request in Model.requests)
             {
-            <tr>
-                <th>Title</th>
-                <th>Genre</th>
-                <th>Price</th>
-                <th>Url</th>
-                <th>Description</th>
-                <th></th>
-                <th></th>
-            </tr>
+                <tr>
+                    <th>Title</th>
+                    <th>Genre</th>
+                    <th>Price</th>
+                    <th>Url</th>
+                    <th>Description</th>
+                    <th></th>
+                    <th></th>
+                </tr>
                 <tr>
                     <td>@request.title</td>
                     <td>@request.genre</td>
@@ -43,4 +43,24 @@ else
             }
         </tbody>
     </table>
+
 }
+
+<h4>FAQs</h4>
+<table class="table">
+    <tbody>
+        @foreach (var request in Model.faqs)
+        {
+            <tr>
+                <th>Name</th>
+                <th>Question</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr>
+                <td>@request.name</td>
+                <td>@request.question</td>
+            </tr>
+        }
+    </tbody>
+</table>
