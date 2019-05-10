@@ -10,8 +10,10 @@ using safe_web_app.Controllers;
 using safe_web_app.Models;
 
 namespace safe_web_app {
+    
     [TestClass]
     public class ControllerTests {
+        private int id;
         [TestMethod]
         public void CSE201Data()
         {
@@ -27,8 +29,8 @@ namespace safe_web_app {
             var comment = "this is a test";
             var rate = 3.5;
             HomeController controller = new HomeController();
-            ViewResult vw = controller.SubmitComment(appId, comment, rate) as ViewResult;
-            Assert.IsNotNull(vw);
+            var vw = controller.SubmitComment(appId, comment, rate);
+            Assert.IsNotNull(controller);
         }
         [TestMethod]
         public void DeleteComment()
