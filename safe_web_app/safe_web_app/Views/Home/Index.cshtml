@@ -28,7 +28,7 @@
                 break;
             }
     <div class="col-md-4">
-        <h2><img src="@app.imageUrl" alt="" height="42" width="42" /> @app.title</h2>
+        <h2><img src="@app.imageUrl" alt="" height="42" width="42" /> <a style="color:black" href="@Url.Action("Comment", "Home", new { appId = app.id })">@app.title</a></h2>
         <p>
             <a style="color:black" href="@Url.Action("Comment", "Home", new { appId = app.id })">@app.app_desc</a>
         </p>
