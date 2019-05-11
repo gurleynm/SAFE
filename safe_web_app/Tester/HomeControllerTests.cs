@@ -13,35 +13,13 @@ namespace safe_web_app {
     
     [TestClass]
     public class ControllerTests {
-        private int id;
+
         [TestMethod]
         public void CSE201Data()
         {
             CSE201Entities db = new CSE201Entities();
             Assert.IsNotNull(db);
         }
-
-
-        [TestMethod]
-        public void SubmitComment()
-        {
-            var appId = 2;
-            var comment = "this is a test";
-            var rate = 3.5;
-            HomeController controller = new HomeController();
-            ViewResult vw = controller.SubmitComment(appId, comment, rate) as ViewResult;
-            Assert.IsNotNull(vw);
-        }
-        [TestMethod]
-        public void DeleteComment()
-        {
-            var commentId = 1;
-            var appId = 1;
-            HomeController controller = new HomeController();
-            ViewResult vw = controller.DeleteComment(commentId, appId) as ViewResult;
-            Assert.IsNotNull(vw);
-        }
-
         [TestMethod]
         public void Index() {
             

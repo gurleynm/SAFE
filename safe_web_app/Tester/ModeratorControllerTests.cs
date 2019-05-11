@@ -20,29 +20,6 @@ namespace safe_web_app.Controllers.Tests
             ModeratorController mc = new ModeratorController();
             Assert.IsNotNull(mc);
         }
-
-        [TestMethod()]
-        public void ManageRequestsTest()
-        {
-            ModeratorController mc = new ModeratorController();
-            ViewResult vw = mc.ManageRequests() as ViewResult;
-            Assert.IsNotNull(vw);
-        }
-
-        //[TestMethod()]
-        //public void DenyRequestTest()
-        //{
-        //    ModeratorController mc = new ModeratorController();
-        //    ViewResult vw = mc.DenyRequest(1) as ViewResult;
-        //    Assert.IsNotNull(vw);
-        //}
-        //[TestMethod()]
-        //public void ApproveRequestTest()
-        //{
-        //    ModeratorController mc = new ModeratorController();
-        //    ViewResult vw = mc.ApproveRequest(1) as ViewResult;
-        //    Assert.IsNotNull(vw);
-
-        //}
+              
     }
 }
